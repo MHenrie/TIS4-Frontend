@@ -1,0 +1,32 @@
+<div id="container">
+    <div id="alert" class="alert alert-dark" role="alert" [hidden]="alertHidden"></div>
+    <input class="form-control" placeholder="ID" type="text" [(ngModel)]="usuario.id"><br>
+    <input class="form-control" placeholder="Nome" type="text" [(ngModel)]="usuario.nomeCompleto"><br>
+    <input class="form-control" placeholder="Username" type="text" [(ngModel)]="usuario.username"><br>
+    <input class="form-control" placeholder="Senha" type="text" [(ngModel)]="usuario.senha"><br>
+    <input class="form-control" placeholder="Tipo" type="text" [(ngModel)]="usuario.tipo"><br>
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-success" (click)="adicionar()">Inserir</button>
+        <button type="button" class="btn btn-info" (click)="atualizar()">Editar</button>
+        <button type="button" class="btn btn-danger" (click)="excluir()">Excluir</button>
+        <button type="button" class="btn btn-secondary" (click)="limpar()">Limpar</button>
+    </div>
+    <br><br>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nome Completo</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Username</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuario of usuarios" (click)="carregar(usuario.username)">
+                <td>{{usuario.nomeCompleto}}</td>
+                <td>{{usuario.tipo}}</td>
+                <td>{{usuario.username}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
