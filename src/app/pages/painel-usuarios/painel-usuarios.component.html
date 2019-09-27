@@ -1,12 +1,24 @@
 <div id="container">
-    <div id="alert" class="alert alert-dark" role="alert" [hidden]="alertHidden"></div>
-    <input class="form-control" placeholder="ID" type="text" [(ngModel)]="usuario.id"><br>
+    <div id="alert" class="alert" role="alert" [hidden]="alertHidden"></div>
     <input class="form-control" placeholder="Nome" type="text" [(ngModel)]="usuario.nomeCompleto"><br>
     <input class="form-control" placeholder="Username" type="text" [(ngModel)]="usuario.username"><br>
-    <input class="form-control" placeholder="Senha" type="text" [(ngModel)]="usuario.senha"><br>
-    <input class="form-control" placeholder="Tipo" type="text" [(ngModel)]="usuario.tipo"><br>
-
-    <div class="btn-group">
+    <select class="form-control" type="text" [(ngModel)]="usuario.tipo">
+        <option value="undefined" disabled selected>Tipo</option>
+        <option value="Professor">Professor</option>
+        <option value="Supervisor">Supervisor</option>
+        <option value="Administrador">Administrador</option>
+    </select>
+    <br>
+    <input class="form-control" placeholder="Senha" type="password"
+        *ngIf="!usuario.id && mesmaSenha || usuario.id && !mesmaSenha" [(ngModel)]="usuario.senha">
+    <br [hidden]="mesmaSenha">
+    <button class="btn btn-outline-danger btn-block" [hidden]="!mesmaSenha" *ngIf="usuario.id"
+        (click)="alterarSenha()">Alterar
+        Senha</button>
+    <button class="btn btn-outline-primary btn-block" [hidden]="mesmaSenha" *ngIf="usuario.id"
+        (click)="manterSenha()">Manter Senha Antiga</button>
+    <br>
+    <div class="btn-group btn-block">
         <button type="button" class="btn btn-success" (click)="adicionar()">Inserir</button>
         <button type="button" class="btn btn-info" (click)="atualizar()">Editar</button>
         <button type="button" class="btn btn-danger" (click)="excluir()">Excluir</button>

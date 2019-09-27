@@ -1,1 +1,43 @@
-<p>painel-turmas works!</p>
+<div id="container">
+    <div id="alertTurma" class="alert" role="alert" [hidden]="alertHidden"></div>
+    <input class="form-control" placeholder="Nome" type="text" [(ngModel)]="turma.nome"><br>
+    <input class="form-control" placeholder="Série" type="text" [(ngModel)]="turma.serie"><br>
+    <input class="form-control" placeholder="Ano" type="number" [(ngModel)]="turma.ano"><br>
+    <select class="form-control" type="number" [(ngModel)]="turma.professorId">
+        <option value="undefined" disabled selected>Professor</option>
+        <option *ngFor=" let professor of professores" [ngValue]="professor.id">
+            <span>{{professor.nomeCompleto}} ({{professor.username}})</span>
+        </option>
+    </select>
+    <br>
+    <select class="form-control" type="number" [(ngModel)]="turma.supervisorId">
+        <option value="undefined" disabled selected>Supervisor</option>
+        <option *ngFor="let supervisor of supervisores" [ngValue]="supervisor.id">
+            <span>{{supervisor.nomeCompleto}} ({{supervisor.username}}) </span>
+        </option>
+    </select>
+    <br>
+    <div class="btn-group btn-block">
+        <button type="button" class="btn btn-success" (click)="adicionar()">Inserir</button>
+        <button type="button" class="btn btn-info" (click)="atualizar()">Editar</button>
+        <button type="button" class="btn btn-danger" (click)="excluir()">Excluir</button>
+        <button type="button" class="btn btn-secondary" (click)="limpar()">Limpar</button>
+    </div>
+    <br><br>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Série</th>
+                <th scope="col">Ano</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let turma of turmas" (click)="carregar(turma.id)">
+                <td>{{turma.nome}}</td>
+                <td>{{turma.serie}}</td>
+                <td>{{turma.ano}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

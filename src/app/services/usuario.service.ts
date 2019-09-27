@@ -11,24 +11,32 @@ export class UsuarioService {
 
   constructor(private httpClient: HttpClient) { }
 
-  listar() {
-    return this.httpClient.get(this.apiUrl + '/usuarios');
+  listarTodos() {
+    return this.httpClient.get(`${this.apiUrl}/usuarios`);
   }
 
   adicionar(usuario: Usuario) {
-    return this.httpClient.post(this.apiUrl + `/usuario?adm=${this.user}`, usuario);
+    return this.httpClient.post(`${this.apiUrl}/usuario?adm=${this.user}`, usuario);
   }
 
   atualizar(usuario: Usuario) {
-    return this.httpClient.put(this.apiUrl + `/usuario?adm=${this.user}`, usuario);
+    return this.httpClient.put(`${this.apiUrl}/usuario?adm=${this.user}`, usuario);
   }
 
   excluir(id: number) {
-    return this.httpClient.delete(this.apiUrl + `/usuario?id=${id}&adm=${this.user}`);
+    return this.httpClient.delete(`${this.apiUrl}/usuario?id=${id}&adm=${this.user}`);
   }
 
   buscar(username: String) {
-    return this.httpClient.get(this.apiUrl + `/usuario?username=${username}`);
+    return this.httpClient.get(`${this.apiUrl}/usuario?username=${username}`);
+  }
+
+  listarProfessores(){
+    return this.httpClient.get(`${this.apiUrl}/professores`);
+  }
+
+  listarSupervisores(){
+    return this.httpClient.get(`${this.apiUrl}/supervisores`);
   }
 
 }

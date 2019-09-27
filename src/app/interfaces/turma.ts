@@ -3,7 +3,6 @@ export interface Turma {
     nome?: string;
     serie?: string;
     ano?: number;
-    professor?: any;
-    supervisor?: any;
-
+    professorId?: number;
+    supervisorId?: number;
 }

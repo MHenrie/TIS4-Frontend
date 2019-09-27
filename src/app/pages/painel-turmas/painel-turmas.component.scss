@@ -1,0 +1,15 @@
+#container {
+  padding: 3%;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input::placeholder {
+  color: #495057;
+}
+
+.btn-group .btn {
+  width: 25%;
+}
