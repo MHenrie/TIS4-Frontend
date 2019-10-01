@@ -13,8 +13,7 @@
         *ngIf="!usuario.id && mesmaSenha || usuario.id && !mesmaSenha" [(ngModel)]="usuario.senha">
     <br [hidden]="mesmaSenha">
     <button class="btn btn-outline-danger btn-block" [hidden]="!mesmaSenha" *ngIf="usuario.id"
-        (click)="alterarSenha()">Alterar
-        Senha</button>
+        (click)="alterarSenha()">Alterar Senha</button>
     <button class="btn btn-outline-primary btn-block" [hidden]="mesmaSenha" *ngIf="usuario.id"
         (click)="manterSenha()">Manter Senha Antiga</button>
     <br>

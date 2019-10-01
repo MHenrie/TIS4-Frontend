@@ -7,12 +7,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { PainelUsuariosComponent } from './pages/painel-usuarios/painel-usuarios.component';
 import { PainelTurmasComponent } from './pages/painel-turmas/painel-turmas.component';
+import { SidebarComponent } from './partials/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PainelUsuariosComponent,
-    PainelTurmasComponent
+    PainelTurmasComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

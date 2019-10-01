@@ -1,21 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TurmaService } from 'src/app/services/turma.service';
 import { Turma } from 'src/app/interfaces/turma';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Usuario } from 'src/app/interfaces/usuario';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-painel-turmas',
   templateUrl: './painel-turmas.component.html',
   styleUrls: ['./painel-turmas.component.scss']
 })
-export class PainelTurmasComponent implements OnInit {
+export class PainelTurmasComponent implements OnInit, OnDestroy {
 
-  turma: Turma = {};
-  turmas: Turma[] = [];
-  professores: Usuario[] = [];
-  supervisores: Usuario[] = [];
-  alertHidden: boolean = true;
+  public turma: Turma = {};
+  public turmas: Turma[] = [];
+  public professores: Usuario[] = [];
+  public supervisores: Usuario[] = [];
+  public alertHidden: boolean = true;
+
+  private subscriptions: Subscription[] = [];
 
   constructor(private turmaService: TurmaService, private usuarioService: UsuarioService) { }
 
@@ -23,6 +26,10 @@ export class PainelTurmasComponent implements OnInit {
     this.listar();
     this.listarProfessores();
     this.listarSupervisores();
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   exibirAlert(mensagem: string, tipo: string) {
@@ -47,23 +54,23 @@ export class PainelTurmasComponent implements OnInit {
   }
 
   listar() {
-    this.turmaService.listar()
-      .subscribe(dados => this.turmas = <Turma[]>dados);
+    this.subscriptions.push(this.turmaService.listar()
+      .subscribe(dados => this.turmas = <Turma[]>dados));
   }
 
   listarProfessores() {
-    this.usuarioService.listarProfessores()
-      .subscribe(resposta => this.professores = <Usuario[]>resposta);
+    this.subscriptions.push(this.usuarioService.listarProfessores()
+      .subscribe(resposta => this.professores = <Usuario[]>resposta));
   }
 
   listarSupervisores() {
-    this.usuarioService.listarSupervisores()
-      .subscribe(resposta => this.supervisores = <Usuario[]>resposta);
+    this.subscriptions.push(this.usuarioService.listarSupervisores()
+      .subscribe(resposta => this.supervisores = <Usuario[]>resposta));
   }
 
   carregar(id: number) {
-    this.turmaService.buscar(id)
-      .subscribe(resposta => this.turma = resposta);
+    this.subscriptions.push(this.turmaService.buscar(id)
+      .subscribe(resposta => this.turma = resposta));
   }
 
   limpar() {
@@ -72,7 +79,7 @@ export class PainelTurmasComponent implements OnInit {
 
   adicionar() {
     if (this.camposPreenchidos())
-      this.turmaService.adicionar(this.turma)
+      this.subscriptions.push(this.turmaService.adicionar(this.turma)
         .subscribe(() => {
           this.turma = {};
           this.exibirAlert('Turma cadastrada com sucesso!', 'success');
@@ -83,12 +90,12 @@ export class PainelTurmasComponent implements OnInit {
               this.exibirAlert('Preencha todos os campos.', 'warning');
             else
               this.exibirAlert(response.error.message, 'danger');
-          });
+          }));
   }
 
   atualizar() {
     if (this.camposPreenchidos())
-      this.turmaService.atualizar(this.turma)
+      this.subscriptions.push(this.turmaService.atualizar(this.turma)
         .subscribe(() => {
           this.turma = {};
           this.exibirAlert('Turma atualizada com sucesso!', 'success');
@@ -99,18 +106,18 @@ export class PainelTurmasComponent implements OnInit {
               this.exibirAlert('Preencha todos os campos.', 'warning');
             else
               this.exibirAlert(response.error.message, 'danger');
-          });
+          }));
   }
 
   excluir() {
     if (this.camposPreenchidos())
-      this.turmaService.excluir(this.turma.id)
+      this.subscriptions.push(this.turmaService.excluir(this.turma.id)
         .subscribe(() => {
           this.turma = {};
           this.exibirAlert('Turma excluída com sucesso!', 'success');
           this.listar();
         },
-          response => this.exibirAlert(response.error.message, 'danger'));
+          response => this.exibirAlert(response.error.message, 'danger')));
   }
 
 }
