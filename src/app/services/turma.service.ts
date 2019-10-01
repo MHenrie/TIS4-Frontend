@@ -16,19 +16,19 @@ export class TurmaService {
   }
 
   public adicionar(turma: Turma) {
-    return this.httpClient.post(`${this.apiUrl}/turma?adm=${this.user}`, turma);
+    return this.httpClient.post(`${this.apiUrl}/turma?user=${this.user}`, turma);
   }
 
   public atualizar(turma: Turma) {
-    return this.httpClient.put(`${this.apiUrl}/turma?adm=${this.user}`, turma);
+    return this.httpClient.put(`${this.apiUrl}/turma?user=${this.user}`, turma);
   }
 
   public excluir(id: number) {
-    return this.httpClient.delete(`${this.apiUrl}/turma?id=${id}&adm=${this.user}`);
+    return this.httpClient.delete(`${this.apiUrl}/turma/${id}?user=${this.user}`);
   }
 
   public buscar(id: number) {
-    return this.httpClient.get(`${this.apiUrl}/turma?id=${id}`);
+    return this.httpClient.get(`${this.apiUrl}/turma/${id}`);
   }
 
 }

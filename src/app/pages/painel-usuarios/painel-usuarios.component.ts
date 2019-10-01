@@ -88,10 +88,7 @@ export class PainelUsuariosComponent implements OnInit, OnDestroy {
           this.listar();
         },
           response => {
-            if (response.status == 400)
-              this.exibirAlert('Preencha todos os campos.', 'warning');
-            else
-              this.exibirAlert(response.error.message, 'danger');
+            this.exibirAlert(response.error.message, 'danger');
           }));
     }
   }
@@ -106,10 +103,7 @@ export class PainelUsuariosComponent implements OnInit, OnDestroy {
           this.listar();
         },
           response => {
-            if (response.status == 400)
-              this.exibirAlert('Preencha todos os campos.', 'warning');
-            else
-              this.exibirAlert(response.error.message, 'danger');
+            this.exibirAlert(response.error.message, 'danger');
           }));
     }
   }
