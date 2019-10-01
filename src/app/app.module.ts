@@ -8,13 +8,17 @@ import { FormsModule } from '@angular/forms';
 import { PainelUsuariosComponent } from './pages/painel-usuarios/painel-usuarios.component';
 import { PainelTurmasComponent } from './pages/painel-turmas/painel-turmas.component';
 import { SidebarComponent } from './partials/sidebar/sidebar.component';
+import { HeaderComponent } from './partials/header/header.component';
+import { ContainerComponent } from './partials/container/container.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PainelUsuariosComponent,
     PainelTurmasComponent,
-    SidebarComponent
+    SidebarComponent,
+    HeaderComponent,
+    ContainerComponent
   ],
   imports: [
     BrowserModule,
