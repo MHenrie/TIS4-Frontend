@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 export class PainelUsuariosComponent implements OnInit, OnDestroy {
   openModal = false;
   isNewUser = false;
+  titleModal = "Formulário - Título";
   public usuario: Usuario = {};
   public usuarios: Usuario[] = [];
   public alertHidden: boolean = true;
@@ -128,6 +129,14 @@ export class PainelUsuariosComponent implements OnInit, OnDestroy {
 
   public abrirModal(){
     this.openModal=true;
+  }
+  public updateUser(){
+    this.isNewUser = true;
+    this.titleModal = "Atualização de usuário"
+  }
+  public newUser(){
+    this.isNewUser = false;
+    this.titleModal = "Cadastro de usuário"
   }
 
 }

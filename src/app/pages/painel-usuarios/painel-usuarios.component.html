@@ -4,8 +4,12 @@
             <div class="close-modal" (click)="fecharModal()">
                 <span>x</span>
             </div>
+            <h3>{{titleModal}}</h3>
+            <label>Nome</label>
             <input class="form-control" placeholder="Nome" type="text" [(ngModel)]="usuario.nomeCompleto"><br>
+            <label>Usuário</label>
             <input class="form-control" placeholder="Username" type="text" [(ngModel)]="usuario.username"><br>
+            <label>Tipo</label>
             <select class="form-control" type="text" [(ngModel)]="usuario.tipo">
                 <option value="undefined" disabled selected>Tipo</option>
                 <option value="Professor">Professor</option>
@@ -13,6 +17,7 @@
                 <option value="Administrador">Administrador</option>
             </select>
             <br>
+            <label *ngIf="!usuario.id && mesmaSenha || usuario.id && !mesmaSenha">Senha</label>
             <input class="form-control" placeholder="Senha" type="password"
                 *ngIf="!usuario.id && mesmaSenha || usuario.id && !mesmaSenha" [(ngModel)]="usuario.senha">
             <br [hidden]="mesmaSenha">
@@ -23,13 +28,13 @@
             <br>
             <div id="alert" class="alert" role="alert" [hidden]="alertHidden"></div>
 
-            <div class="btn-block d-flex justify-content-between">
-                <button type="button" class="btn btn-success " [class.d-none]="isNewUser"
+            <div class="btn-block btn-group">
+                <button type="button" class="btn btn-success  w-75" *ngIf="!isNewUser" [(ngModel)]="isNewUser"
                     (click)="adicionar()">Inserir</button>
-                <button type="button" class="btn btn-info " [class.d-none]="!isNewUser"
-                    (click)="atualizar()">Editar</button>
+                <button type="button" class="btn btn-info  w-75" *ngIf="isNewUser" [(ngModel)]="isNewUser"
+                    (click)="atualizar()">Finalizar edição</button>
                 <!--<button type="button" class="btn btn-danger" (click)="excluir()">Excluir</button>-->
-                <button type="button" class="btn btn-secondary " (click)="limpar()">Limpar</button>
+                <button type="button" class="btn btn-secondary w-25" (click)="limpar()">Limpar</button>
             </div>
 
             <div class="w-100 mt-3">
@@ -46,7 +51,7 @@
             </div>
             <div class="mb-3">
                 <button type="button" class="btn btn-outline-success w-100" (click)="abrirModal()"
-                    (click)="limpar()">Adicionar novo
+                    (click)="limpar()" (click)="newUser()">Adicionar novo
                     usuário</button>
             </div>
             <div class="">
@@ -71,7 +76,7 @@
                                         <div class="arrow"></div>
                                     </div>
                                     <a href="javascript:void(0)">
-                                        <img src="../../../assets/img/icon-edit.svg" width="25px" (click)="abrirModal()"
+                                        <img src="../../../assets/img/icon-edit.svg" width="25px" (click)="updateUser()" (click)="abrirModal()"
                                             (mouseenter)="usuario.hover=true" (mouseleave)="usuario.hover=false">
                                     </a>
                                 </a>
