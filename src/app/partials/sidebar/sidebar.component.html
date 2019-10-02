@@ -1,13 +1,16 @@
-<aside class="side-bar colapsed">
+<aside class="side-bar" [class.colapsed]="colapsed">
     <div class="side-bar-menu d-flex w-100  flex-column flex-nowrap align-items-center">
-        <div class="menu-items opt-switch">
-            <div class="nav-icon1 ">
+        <!--
+        
+        <div class="menu-items opt-switch" (click)="switchSidebar()">
+            <div class="nav-icon1" [class.open]="!colapsed" style="opacity: 0;">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             <span style="z-index: -2"></span>
         </div>
+    -->
         <div class="w-100">
             <div class="menu-items opt-items active" data-target="user-manager">
                 <div class="icon-item">

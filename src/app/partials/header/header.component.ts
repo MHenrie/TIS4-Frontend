@@ -6,10 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  colapsed = true;
+
+
 
   constructor() { }
 
   ngOnInit() {
+  }
+  switchSidebar() {
+    if (this.colapsed) {
+      this.colapsed = false;
+     
+    } else {
+      this.colapsed = true;
+      
+    }
   }
 
 }

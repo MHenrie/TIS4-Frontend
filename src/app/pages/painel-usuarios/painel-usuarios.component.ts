@@ -6,10 +6,12 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-painel-usuarios',
   templateUrl: './painel-usuarios.component.html',
-  styleUrls: ['./painel-usuarios.component.scss']
+  styleUrls: ['./painel-usuarios.component.scss'],
+
 })
 export class PainelUsuariosComponent implements OnInit, OnDestroy {
-
+  openModal = false;
+  isNewUser = false;
   public usuario: Usuario = {};
   public usuarios: Usuario[] = [];
   public alertHidden: boolean = true;
@@ -118,6 +120,14 @@ export class PainelUsuariosComponent implements OnInit, OnDestroy {
         },
           response => this.exibirAlert(response.error.message, 'danger')));
     }
+  }
+
+  public fecharModal(){
+    this.openModal=false;
+  }
+
+  public abrirModal(){
+    this.openModal=true;
   }
 
 }

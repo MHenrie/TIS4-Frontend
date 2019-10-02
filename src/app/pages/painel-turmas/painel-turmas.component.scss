@@ -1,5 +1,10 @@
+$width:calc(100% - 70px);
+$heigth: calc(100% - 60px);
+
 #container {
-  padding: 3%;
+  padding: 0;
+  width: $width;
+  float: right;
 }
 
 input[type="number"]::-webkit-inner-spin-button {
@@ -12,4 +17,32 @@ input::placeholder {
 
 .btn-group .btn {
   width: 25%;
+}
+
+
+.fade{
+  transition: ease-in-out 0.3s;
+}
+.backdrop-modal{
+  background-color: #00000083;
+  padding: 20px;
+  opacity: 0;
+  z-index: -1;
+  display: block;
+  position: absolute;
+
+  width: $width;
+  height: $heigth;
+  
+}
+
+.show{
+  opacity: 1 !important;
+  z-index: 1;
+  display: block !important;
+}
+
+.bg-white{
+  padding: 20px;
+  background-color: #fff;
 }

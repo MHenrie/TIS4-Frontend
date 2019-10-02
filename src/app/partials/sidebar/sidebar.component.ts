@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-
   /* 
   
   $('.opt-switch').click(function () {
@@ -25,9 +24,14 @@ $('.opt-items').click(function () {
 
   */
 
+
+
+
   constructor() { }
 
   ngOnInit() {
+
   }
+
 
 }

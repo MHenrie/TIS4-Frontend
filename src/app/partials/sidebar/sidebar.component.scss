@@ -1,12 +1,12 @@
+$bg-sidebar: rgb(53, 98, 156);
+
 .side-bar{
-    position: absolute;
+    position: fixed;
     left: 0;
-    height:calc(100% - 60px);
-    height:-moz-calc(100% - 60px);
-    height:-webkit-calc(100% - 60px);
+    height: 100%;
     width: 280px;
-    background-color: rgb(53, 98, 156);
-    box-shadow:0px -1px 10px rgb(0, 0, 0);
+    background-color: $bg-sidebar;
+    box-shadow:5px 0 5px -5px rgb(0, 0, 0);
     z-index: 3;
     transition: 0.5s ease-in-out;
 }
@@ -113,7 +113,7 @@
 
 
 .colapsed{
-    width: 70px !important;
+    left: -280px !important;
     box-shadow: none !important;
 }
 

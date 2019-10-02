@@ -1,3 +1,10 @@
 <div class="header">
-
+    <div class="menu-items opt-switch" (click)="switchSidebar()">
+        <div class="nav-icon1" [class.open]="!colapsed">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <span style="z-index: -2"></span>
+    </div>
 </div>

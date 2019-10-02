@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class PainelTurmasComponent implements OnInit, OnDestroy {
 
+  openModal = false;
   public turma: Turma = {};
   public turmas: Turma[] = [];
   public professores: Usuario[] = [];
@@ -114,4 +115,11 @@ export class PainelTurmasComponent implements OnInit, OnDestroy {
           response => this.exibirAlert(response.error.message, 'danger')));
   }
 
+  public fecharModal(){
+    this.openModal=false;
+  }
+
+  public abrirModal(){
+    this.openModal=true;
+  }
 }
