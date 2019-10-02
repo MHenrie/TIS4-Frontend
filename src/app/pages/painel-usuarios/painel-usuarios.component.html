@@ -1,39 +1,41 @@
 <div id="container">
     <div class="backdrop-modal fade" [class.show]="openModal">
-            <div class="content-modal bg-white" >
-                <div class="close-modal" (click)="fecharModal()">
-                    <span>x</span>
-                </div>
-                <input class="form-control" placeholder="Nome" type="text" [(ngModel)]="usuario.nomeCompleto"><br>
-                <input class="form-control" placeholder="Username" type="text" [(ngModel)]="usuario.username"><br>
-                <select class="form-control" type="text" [(ngModel)]="usuario.tipo">
-                    <option value="undefined" disabled selected>Tipo</option>
-                    <option value="Professor">Professor</option>
-                    <option value="Supervisor">Supervisor</option>
-                    <option value="Administrador">Administrador</option>
-                </select>
-                <br>
-                <input class="form-control" placeholder="Senha" type="password"
-                    *ngIf="!usuario.id && mesmaSenha || usuario.id && !mesmaSenha" [(ngModel)]="usuario.senha">
-                <br [hidden]="mesmaSenha">
-                <button class="btn btn-warning btn-block" [hidden]="!mesmaSenha" *ngIf="usuario.id"
-                    (click)="alterarSenha()">Alterar Senha</button>
-                <button class="btn btn-outline-primary btn-block" [hidden]="mesmaSenha" *ngIf="usuario.id"
-                    (click)="manterSenha()">Manter Senha Antiga</button>
-                <br>
-                <div id="alert" class="alert" role="alert" [hidden]="alertHidden"></div>
-
-                <div class="btn-block d-flex justify-content-between">
-                    <button type="button" class="btn btn-success " [class.d-none]="isNewUser" (click)="adicionar()">Inserir</button>
-                    <button type="button" class="btn btn-info " [class.d-none]="!isNewUser" (click)="atualizar()">Editar</button>
-                    <!--<button type="button" class="btn btn-danger" (click)="excluir()">Excluir</button>-->
-                    <button type="button" class="btn btn-secondary " (click)="limpar()">Limpar</button>
-                </div>
-
-                <div class="w-100 mt-3">
-                    <button type="button" class="btn btn-outline-danger w-100" (click)="fecharModal()">Fechar</button>
-                </div>
+        <div class="content-modal bg-white">
+            <div class="close-modal" (click)="fecharModal()">
+                <span>x</span>
             </div>
+            <input class="form-control" placeholder="Nome" type="text" [(ngModel)]="usuario.nomeCompleto"><br>
+            <input class="form-control" placeholder="Username" type="text" [(ngModel)]="usuario.username"><br>
+            <select class="form-control" type="text" [(ngModel)]="usuario.tipo">
+                <option value="undefined" disabled selected>Tipo</option>
+                <option value="Professor">Professor</option>
+                <option value="Supervisor">Supervisor</option>
+                <option value="Administrador">Administrador</option>
+            </select>
+            <br>
+            <input class="form-control" placeholder="Senha" type="password"
+                *ngIf="!usuario.id && mesmaSenha || usuario.id && !mesmaSenha" [(ngModel)]="usuario.senha">
+            <br [hidden]="mesmaSenha">
+            <button class="btn btn-warning btn-block" [hidden]="!mesmaSenha" *ngIf="usuario.id"
+                (click)="alterarSenha()">Alterar Senha</button>
+            <button class="btn btn-outline-primary btn-block" [hidden]="mesmaSenha" *ngIf="usuario.id"
+                (click)="manterSenha()">Manter Senha Antiga</button>
+            <br>
+            <div id="alert" class="alert" role="alert" [hidden]="alertHidden"></div>
+
+            <div class="btn-block d-flex justify-content-between">
+                <button type="button" class="btn btn-success " [class.d-none]="isNewUser"
+                    (click)="adicionar()">Inserir</button>
+                <button type="button" class="btn btn-info " [class.d-none]="!isNewUser"
+                    (click)="atualizar()">Editar</button>
+                <!--<button type="button" class="btn btn-danger" (click)="excluir()">Excluir</button>-->
+                <button type="button" class="btn btn-secondary " (click)="limpar()">Limpar</button>
+            </div>
+
+            <div class="w-100 mt-3">
+                <button type="button" class="btn btn-outline-danger w-100" (click)="fecharModal()">Fechar</button>
+            </div>
+        </div>
     </div>
 
     <br><br>
@@ -43,7 +45,8 @@
                 <h1>Listagem de usuários</h1>
             </div>
             <div class="mb-3">
-                <button type="button" class="btn btn-outline-success w-100" (click)="abrirModal()" (click)="limpar()">Adicionar novo
+                <button type="button" class="btn btn-outline-success w-100" (click)="abrirModal()"
+                    (click)="limpar()">Adicionar novo
                     usuário</button>
             </div>
             <div class="">
@@ -57,22 +60,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let usuario of usuarios" >
+                        <tr *ngFor="let usuario of usuarios">
                             <td>{{usuario.nomeCompleto}}</td>
                             <td>{{usuario.tipo}}</td>
                             <td>{{usuario.username}}</td>
                             <td class="line-options" (click)="carregar(usuario.username)">
-                                <a class="position-relative"  href="javascript:void(0)" (click)="abrirModal()" (mouseenter)="usuario.hover=true" (mouseleave)="usuario.hover=false">
+                                <a class="position-relative">
                                     <div class="dialog-description" [class.no-opacity]="usuario.hover">
                                         <p>Editar</p>
+                                        <div class="arrow"></div>
                                     </div>
-                                    <img src="../../../assets/img/icon-edit.svg" width="25px">
+                                    <a href="javascript:void(0)">
+                                        <img src="../../../assets/img/icon-edit.svg" width="25px" (click)="abrirModal()"
+                                            (mouseenter)="usuario.hover=true" (mouseleave)="usuario.hover=false">
+                                    </a>
                                 </a>
-                                <a class="position-relative" href="javascript:void(0)" (mouseenter)="usuario.hover2=true" (mouseleave)="usuario.hover2=false">
+                                <a class="position-relative">
                                     <div class="dialog-description" [class.no-opacity]="usuario.hover2">
                                         <p>Excluir</p>
+                                        <div class="arrow"></div>
                                     </div>
-                                    <img src="../../../assets/img/icon-delete.svg" width="20px">
+                                    <a href="javascript:void(0)">
+                                        <img src="../../../assets/img/icon-delete.svg" width="19px"
+                                            (mouseenter)="usuario.hover2=true" (mouseleave)="usuario.hover2=false">
+                                    </a>
                                 </a>
                             </td>
                         </tr>

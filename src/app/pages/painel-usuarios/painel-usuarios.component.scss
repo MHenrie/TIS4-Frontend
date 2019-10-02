@@ -3,7 +3,6 @@
   padding: 0;
 }
 
-
 input::placeholder {
   color: #495057;
 }
@@ -15,7 +14,6 @@ input::placeholder {
   display: flex;
   justify-content: space-around;
 }
-
 
 .fade{
   transition: ease-in-out 0.3s;
@@ -73,6 +71,7 @@ input::placeholder {
   max-width: 700px;
 }
 .dialog-description{
+  transition: ease-in-out 0.2s;
   opacity: 0;
   border-radius: 3px;
   position: absolute;
@@ -86,9 +85,9 @@ input::placeholder {
     font-size: 11px;
     line-height: 22px;
     text-align: center;
+    cursor: default;
   }
-  &::after{
-    content: "";
+  & .arrow{
     position: absolute;
     bottom: 0;
     left: 50%;
