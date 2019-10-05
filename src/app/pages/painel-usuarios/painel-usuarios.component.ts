@@ -21,7 +21,7 @@ export class PainelUsuariosComponent implements OnInit, OnDestroy {
   constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit() {
-    this.listar();
+    this.listarTodos();
   }
 
   ngOnDestroy() {
@@ -60,15 +60,15 @@ export class PainelUsuariosComponent implements OnInit, OnDestroy {
     this.usuario.senha = this.senha;
   }
 
-  public listar(): void {
+  public listarTodos(): void {
     this.subscriptions.push(this.usuarioService.listarTodos()
-      .subscribe(dados => this.usuarios = <Usuario[]>dados));
+      .subscribe(lista => this.usuarios = <Usuario[]>lista));
   }
 
   public carregar(username: string): void {
     this.subscriptions.push(this.usuarioService.buscar(username)
-      .subscribe(resposta => {
-        this.usuario = resposta;
+      .subscribe(objeto => {
+        this.usuario = objeto;
         if (!this.mesmaSenha)
           this.alterarSenha();
       }));
@@ -85,11 +85,9 @@ export class PainelUsuariosComponent implements OnInit, OnDestroy {
         .subscribe(() => {
           this.usuario = {};
           this.exibirAlert('Usuário cadastrado com sucesso!', 'success');
-          this.listar();
+          this.listarTodos();
         },
-          response => {
-            this.exibirAlert(response.error.message, 'danger');
-          }));
+          resposta => this.exibirAlert(resposta.error.message, 'danger')));
     }
   }
 
@@ -100,11 +98,9 @@ export class PainelUsuariosComponent implements OnInit, OnDestroy {
           this.usuario = {};
           this.exibirAlert('Usuário atualizado com sucesso!', 'success');
           this.mesmaSenha = true;
-          this.listar();
+          this.listarTodos();
         },
-          response => {
-            this.exibirAlert(response.error.message, 'danger');
-          }));
+          resposta => this.exibirAlert(resposta.error.message, 'danger')));
     }
   }
 
@@ -114,9 +110,9 @@ export class PainelUsuariosComponent implements OnInit, OnDestroy {
         .subscribe(() => {
           this.usuario = {};
           this.exibirAlert('Usuário excluído com sucesso!', 'success');
-          this.listar();
+          this.listarTodos();
         },
-          response => this.exibirAlert(response.error.message, 'danger')));
+          resposta => this.exibirAlert(resposta.error.message, 'danger')));
     }
   }
 

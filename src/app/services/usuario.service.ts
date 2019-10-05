@@ -31,12 +31,12 @@ export class UsuarioService {
     return this.httpClient.get(`${this.apiUrl}/usuario/${username}`);
   }
 
-  public listarProfessores() {
-    return this.httpClient.get(`${this.apiUrl}/usuarios/professores`);
+  public listarPorCategoria(categoria: string) {
+    return this.httpClient.get(`${this.apiUrl}/usuarios/${categoria}`);
   }
 
-  public listarSupervisores() {
-    return this.httpClient.get(`${this.apiUrl}/usuarios/supervisores`);
+  public autenticar(usuario: Usuario) {
+    return this.httpClient.post(`${this.apiUrl}/usuario/auth`, usuario);
   }
 
 }

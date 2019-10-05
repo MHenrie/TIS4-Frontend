@@ -8,13 +8,19 @@ import { FormsModule } from '@angular/forms';
 import { PainelUsuariosComponent } from './pages/painel-usuarios/painel-usuarios.component';
 import { PainelTurmasComponent } from './pages/painel-turmas/painel-turmas.component';
 import { SidebarComponent } from './partials/sidebar/sidebar.component';
+import { LoginComponent } from './pages/login/login.component';
+import { PainelDisciplinasComponent } from './pages/painel-disciplinas/painel-disciplinas.component';
+import { PainelItensDisciplinasComponent } from './pages/painel-itens-disciplinas/painel-itens-disciplinas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PainelUsuariosComponent,
     PainelTurmasComponent,
-    SidebarComponent
+    SidebarComponent,
+    LoginComponent,
+    PainelDisciplinasComponent,
+    PainelItensDisciplinasComponent
   ],
   imports: [
     BrowserModule,

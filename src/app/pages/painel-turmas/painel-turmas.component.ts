@@ -23,7 +23,7 @@ export class PainelTurmasComponent implements OnInit, OnDestroy {
   constructor(private turmaService: TurmaService, private usuarioService: UsuarioService) { }
 
   ngOnInit() {
-    this.listar();
+    this.listarTurmas();
     this.listarProfessores();
     this.listarSupervisores();
   }
@@ -32,8 +32,8 @@ export class PainelTurmasComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
-  exibirAlert(mensagem: string, tipo: string) {
-    let alert = document.querySelector('#alertTurma');
+  private exibirAlert(mensagem: string, tipo: string): void {
+    let alert = document.querySelector('#alert');
     let color = `alert-${tipo}`;
     alert.textContent = mensagem;
     alert.classList.add(color);
@@ -44,7 +44,7 @@ export class PainelTurmasComponent implements OnInit, OnDestroy {
     }, 4000);
   }
 
-  camposPreenchidos() {
+  private camposPreenchidos(): boolean {
     let valores = Object.values(this.turma);
     if (valores.length < 5) {
       this.exibirAlert('Preencha todos os campos.', 'warning');
@@ -53,65 +53,61 @@ export class PainelTurmasComponent implements OnInit, OnDestroy {
     return true;
   }
 
-  listar() {
+  public listarTurmas(): void {
     this.subscriptions.push(this.turmaService.listar()
-      .subscribe(dados => this.turmas = <Turma[]>dados));
+      .subscribe(lista => this.turmas = <Turma[]>lista));
   }
 
-  listarProfessores() {
-    this.subscriptions.push(this.usuarioService.listarProfessores()
-      .subscribe(resposta => this.professores = <Usuario[]>resposta));
+  public listarProfessores(): void {
+    this.subscriptions.push(this.usuarioService.listarPorCategoria('professor')
+      .subscribe(lista => this.professores = <Usuario[]>lista));
   }
 
-  listarSupervisores() {
-    this.subscriptions.push(this.usuarioService.listarSupervisores()
-      .subscribe(resposta => this.supervisores = <Usuario[]>resposta));
+  public listarSupervisores(): void {
+    this.subscriptions.push(this.usuarioService.listarPorCategoria('supervisor')
+      .subscribe(lista => this.supervisores = <Usuario[]>lista));
   }
 
-  carregar(id: number) {
+  public carregar(id: number): void {
     this.subscriptions.push(this.turmaService.buscar(id)
-      .subscribe(resposta => this.turma = resposta));
+      .subscribe(objeto => this.turma = objeto));
   }
 
-  limpar() {
+  public limpar(): void {
     this.turma = {};
   }
 
-  adicionar() {
+  public adicionar(): void {
     if (this.camposPreenchidos())
       this.subscriptions.push(this.turmaService.adicionar(this.turma)
         .subscribe(() => {
           this.turma = {};
           this.exibirAlert('Turma cadastrada com sucesso!', 'success');
-          this.listar();
+          this.listarTurmas();
         },
-          response => {
-            this.exibirAlert(response.error.message, 'danger');
-          }));
+          resposta => this.exibirAlert(resposta.error.message, 'danger')));
   }
 
-  atualizar() {
+  public atualizar(): void {
     if (this.camposPreenchidos())
       this.subscriptions.push(this.turmaService.atualizar(this.turma)
         .subscribe(() => {
           this.turma = {};
           this.exibirAlert('Turma atualizada com sucesso!', 'success');
-          this.listar();
+          this.listarTurmas();
         },
-          response => {
-            this.exibirAlert(response.error.message, 'danger');
-          }));
+          resposta => this.exibirAlert(resposta.error.message, 'danger')));
   }
 
-  excluir() {
+  public excluir(): void {
     if (this.camposPreenchidos())
       this.subscriptions.push(this.turmaService.excluir(this.turma.id)
         .subscribe(() => {
           this.turma = {};
           this.exibirAlert('Turma excluída com sucesso!', 'success');
-          this.listar();
+          this.listarTurmas();
         },
-          response => this.exibirAlert(response.error.message, 'danger')));
+          resposta => this.exibirAlert(resposta.error.message, 'danger')));
   }
 
 }
