@@ -9,7 +9,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./painel-usuarios.component.scss']
 })
 export class PainelUsuariosComponent implements OnInit, OnDestroy {
-
+  openModal = false;
+  isNewUser = false;
+  titleModal = "Formulário - Título";
   public usuario: Usuario = {};
   public usuarios: Usuario[] = [];
   public alertHidden: boolean = true;
@@ -114,6 +116,22 @@ export class PainelUsuariosComponent implements OnInit, OnDestroy {
         },
           resposta => this.exibirAlert(resposta.error.message, 'danger')));
     }
+  }
+
+  public fecharModal(){
+    this.openModal=false;
+  }
+
+  public abrirModal(){
+    this.openModal=true;
+  }
+  public updateUser(){
+    this.isNewUser = true;
+    this.titleModal = "Atualização de usuário"
+  }
+  public newUser(){
+    this.isNewUser = false;
+    this.titleModal = "Cadastro de usuário"
   }
 
 }

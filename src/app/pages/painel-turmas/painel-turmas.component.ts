@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./painel-turmas.component.scss']
 })
 export class PainelTurmasComponent implements OnInit, OnDestroy {
-
+  openModal = false;
   public turma: Turma = {};
   public turmas: Turma[] = [];
   public professores: Usuario[] = [];
@@ -108,6 +108,14 @@ export class PainelTurmasComponent implements OnInit, OnDestroy {
           this.listarTurmas();
         },
           resposta => this.exibirAlert(resposta.error.message, 'danger')));
+  }
+
+  public fecharModal(){
+    this.openModal=false;
+  }
+
+  public abrirModal(){
+    this.openModal=true;
   }
 
 }
