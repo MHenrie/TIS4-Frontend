@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div id="container">
     <div class="backdrop-modal fade" [class.show]="openModal">
         <div class="content-modal bg-white">
@@ -6,9 +7,9 @@
             </div>
             <h3>{{titleModal}}</h3>
             <label>Nome</label>
-            <input class="form-control" placeholder="Nome" type="text" [(ngModel)]="usuario.nomeCompleto"><br>
+            <input class="form-control" placeholder="Nome" type="text" [(ngModel)]="usuario.nomeCompleto">
             <label>Usuário</label>
-            <input class="form-control" placeholder="Username" type="text" [(ngModel)]="usuario.username"><br>
+            <input class="form-control" placeholder="Username" type="text" [(ngModel)]="usuario.username">
             <label>Tipo</label>
             <select class="form-control" type="text" [(ngModel)]="usuario.tipo">
                 <option value="undefined" disabled selected>Tipo</option>
@@ -16,84 +17,134 @@
                 <option value="Supervisor">Supervisor</option>
                 <option value="Administrador">Administrador</option>
             </select>
-            <br>
+
             <label *ngIf="!usuario.id && mesmaSenha || usuario.id && !mesmaSenha">Senha</label>
             <input class="form-control" placeholder="Senha" type="password"
                 *ngIf="!usuario.id && mesmaSenha || usuario.id && !mesmaSenha" [(ngModel)]="usuario.senha">
-            <br [hidden]="mesmaSenha">
-            <button class="btn btn-warning btn-block" [hidden]="!mesmaSenha" *ngIf="usuario.id"
+
+            <button class="btn btn-warning btn-block mb-2" [hidden]="!mesmaSenha" *ngIf="usuario.id"
                 (click)="alterarSenha()">Alterar Senha</button>
-            <button class="btn btn-outline-primary btn-block" [hidden]="mesmaSenha" *ngIf="usuario.id"
+            <button class="btn btn-outline-primary btn-block mb-2" [hidden]="mesmaSenha" *ngIf="usuario.id"
                 (click)="manterSenha()">Manter Senha Antiga</button>
-            <br>
+
             <div id="alert" class="alert" role="alert" [hidden]="alertHidden"></div>
 
-            <div class="btn-block btn-group">
-                <button type="button" class="btn btn-success  w-75" *ngIf="!isNewUser" [(ngModel)]="isNewUser"
-                    (click)="adicionar()">Inserir</button>
-                <button type="button" class="btn btn-info  w-75" *ngIf="isNewUser" [(ngModel)]="isNewUser"
-                    (click)="atualizar()">Finalizar edição</button>
-                <!--<button type="button" class="btn btn-danger" (click)="excluir()">Excluir</button>-->
-                <button type="button" class="btn btn-secondary w-25" (click)="limpar()">Limpar</button>
-            </div>
+            <div class="footer-modal">
+                <div class="btn-block btn-group">
+                    <button type="button" class="btn btn-success  w-75" *ngIf="!isNewUser" [(ngModel)]="isNewUser"
+                        (click)="adicionar()">Inserir</button>
+                    <button type="button" class="btn btn-info  w-75" *ngIf="isNewUser" [(ngModel)]="isNewUser"
+                        (click)="atualizar()">Finalizar edição</button>
+                    <!--<button type="button" class="btn btn-danger" (click)="excluir()">Excluir</button>-->
+                    <button type="button" class="btn btn-secondary w-25" (click)="limpar()">Limpar</button>
+                </div>
 
-            <div class="w-100 mt-3">
-                <button type="button" class="btn btn-outline-danger w-100" (click)="fecharModal()">Fechar</button>
+                <div class="w-100 mt-3">
+                    <button type="button" class="btn btn-outline-danger w-100" (click)="fecharModal()">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="backdrop-modal fade" [class.show]="openModalDelete">
+        <div class="content-modal bg-white">
+            <div class="close-modal" (click)="fecharModal()">
+                <span>x</span>
+            </div>
+            <h3>{{titleModal}}</h3>
+
+            <p>Nome: {{usuario.nomeCompleto}}</p>
+            <p>Usuário: {{usuario.username}}</p>
+            <p>Tipo: {{usuario.tipo}}</p>
+            <div id="alert" class="alert" role="alert" [hidden]="alertHidden"></div>
+
+            <input class="form-control" type="hidden" [(ngModel)]="usuario.nomeCompleto">
+
+            <input class="form-control" type="hidden" [(ngModel)]="usuario.username">
+
+            <select class="form-control d-none" [(ngModel)]="usuario.tipo">
+                <option value="undefined" disabled selected>Tipo</option>
+                <option value="Professor">Professor</option>
+                <option value="Supervisor">Supervisor</option>
+                <option value="Administrador">Administrador</option>
+            </select>
+
+            <input class="form-control" placeholder="Senha" type="hidden"
+                *ngIf="!usuario.id && mesmaSenha || usuario.id && !mesmaSenha" [(ngModel)]="usuario.senha">
+
+
+
+            <div class="footer-modal">
+                <div class="w-100">
+                    <button type="button" class="btn btn-warning w-100" (click)="excluir()">Excluir Usuário</button>
+                </div>
+                <div class="w-100 mt-3">
+
+                    <button type="button" class="btn btn-outline-danger w-100" (click)="fecharModal()">Fechar</button>
+                </div>
             </div>
         </div>
     </div>
 
     <br><br>
-    <div class="p-4">
+    <div class="p-4 d-flex justify-content-center">
         <div class="content-table">
             <div class="mb-2">
                 <h1>Listagem de usuários</h1>
             </div>
             <div class="mb-3">
-                <button type="button" class="btn btn-outline-success w-100" (click)="abrirModal()"
-                    (click)="limpar()" (click)="newUser()">Adicionar novo
+                <button type="button" class="btn btn-outline-success w-100" (click)="abrirModal()" (click)="limpar()"
+                    (click)="newUser()">Adicionar novo
                     usuário</button>
             </div>
-            <div class="">
-                <table class="table table-striped">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Nome Completo</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">Operações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let usuario of usuarios">
-                            <td>{{usuario.nomeCompleto}}</td>
-                            <td>{{usuario.tipo}}</td>
-                            <td>{{usuario.username}}</td>
-                            <td class="line-options" (click)="carregar(usuario.username)">
-                                <a class="position-relative">
-                                    <div class="dialog-description" [class.no-opacity]="usuario.hover">
-                                        <p>Editar</p>
-                                        <div class="arrow"></div>
-                                    </div>
-                                    <a href="javascript:void(0)">
-                                        <img src="../../../assets/img/icon-edit.svg" width="25px" (click)="updateUser()" (click)="abrirModal()"
-                                            (mouseenter)="usuario.hover=true" (mouseleave)="usuario.hover=false">
+            <div class="table-overflow">
+                <div class="search-input d-flex justify-content-between position-relative">
+                    <input class="form-control mb-2" type="text" placeholder="Buscar usuário">
+                    <img class="position-absolute" width="20px" src="../../../assets/img/icon-search.svg">
+                </div>
+                <div class="list-table">
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Nome Completo</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Operações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let usuario of usuarios">
+                                <td>{{usuario.nomeCompleto}}</td>
+                                <td>{{usuario.tipo}}</td>
+                                <td>{{usuario.username}}</td>
+                                <td class="line-options" (click)="carregar(usuario.username)">
+                                    <a class="position-relative">
+                                        <div class="dialog-description" [class.no-opacity]="usuario.hover">
+                                            <p>Editar</p>
+                                            <div class="arrow"></div>
+                                        </div>
+                                        <a href="javascript:void(0)">
+                                            <img src="../../../assets/img/icon-edit.svg" width="25px"
+                                                (click)="updateUser()" (click)="abrirModal()"
+                                                (mouseenter)="usuario.hover=true" (mouseleave)="usuario.hover=false">
+                                        </a>
                                     </a>
-                                </a>
-                                <a class="position-relative">
-                                    <div class="dialog-description" [class.no-opacity]="usuario.hover2">
-                                        <p>Excluir</p>
-                                        <div class="arrow"></div>
-                                    </div>
-                                    <a href="javascript:void(0)">
-                                        <img src="../../../assets/img/icon-delete.svg" width="19px"
-                                            (mouseenter)="usuario.hover2=true" (mouseleave)="usuario.hover2=false">
+                                    <a class="position-relative">
+                                        <div class="dialog-description" [class.no-opacity]="usuario.hover2">
+                                            <p>Excluir</p>
+                                            <div class="arrow"></div>
+                                        </div>
+                                        <a href="javascript:void(0)">
+                                            <img src="../../../assets/img/icon-delete.svg" width="19px"
+                                                (mouseenter)="usuario.hover2=true" (mouseleave)="usuario.hover2=false"
+                                                (click)="updateUser()" (click)="abrirModalDelete()">
+                                        </a>
                                     </a>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

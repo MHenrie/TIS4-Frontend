@@ -11,6 +11,8 @@ import { SidebarComponent } from './partials/sidebar/sidebar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PainelDisciplinasComponent } from './pages/painel-disciplinas/painel-disciplinas.component';
 import { PainelItensDisciplinasComponent } from './pages/painel-itens-disciplinas/painel-itens-disciplinas.component';
+import { HeaderComponent } from './partials/header/header.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { PainelItensDisciplinasComponent } from './pages/painel-itens-disciplina
     SidebarComponent,
     LoginComponent,
     PainelDisciplinasComponent,
-    PainelItensDisciplinasComponent
+    PainelItensDisciplinasComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

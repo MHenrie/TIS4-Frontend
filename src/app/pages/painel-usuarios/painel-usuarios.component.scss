@@ -17,7 +17,7 @@ input::placeholder {
 }
 .backdrop-modal{
   background-color: #00000083;
-  padding: 20px;
+  padding: 5px;
   opacity: 0;
   z-index: -1;
   display: block;
@@ -25,7 +25,14 @@ input::placeholder {
   width: 100%;
   height: 100%;
 }
-
+.footer-modal{
+  position: absolute;
+  bottom: 25px;
+  width: calc(100% - 50px);
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+}
 .show{
   opacity: 1 !important;
   z-index: 1;
@@ -36,11 +43,11 @@ input::placeholder {
   background-color: #fff;
 }
 .content-modal{
-  width: 30%;
+  width: 50%;
   padding: 25px;
   margin: auto;
   position: relative;
-  height: 100%;
+  height: 560px;
   overflow-y: auto;
   @media (max-width: 992px){
     width: 90%;
@@ -64,10 +71,24 @@ input::placeholder {
       margin-top: -2px;
     }
   }
+
+  & .form-control{
+    margin-bottom: 5px;
+    &:last-of-type{
+      margin-bottom: 10px;
+    }
+  }
 }
 
 .content-table{
-  max-width: 700px;
+  max-width: 900px;
+  width: 50%;
+  @media (max-width: 992px){
+    width: 90%;
+  }
+  & .table-overflow{
+    overflow: auto;
+  }
 }
 .dialog-description{
   transition: ease-in-out 0.2s;
@@ -101,4 +122,17 @@ input::placeholder {
 }
 .no-opacity{
   opacity: 1 !important;
+}
+
+.search-input {
+  & img{
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+  }
+}
+
+.list-table{
+  height: 370px;
+  overflow: auto;
 }

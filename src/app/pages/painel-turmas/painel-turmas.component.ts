@@ -12,6 +12,9 @@ import { Subscription } from 'rxjs';
 })
 export class PainelTurmasComponent implements OnInit, OnDestroy {
   openModal = false;
+  openModalDelete = false;
+  titleModal = ""
+  isNewTurma = false;
   public turma: Turma = {};
   public turmas: Turma[] = [];
   public professores: Usuario[] = [];
@@ -33,7 +36,7 @@ export class PainelTurmasComponent implements OnInit, OnDestroy {
   }
 
   private exibirAlert(mensagem: string, tipo: string): void {
-    let alert = document.querySelector('#alert');
+    let alert = document.querySelector('#alertTurma');
     let color = `alert-${tipo}`;
     alert.textContent = mensagem;
     alert.classList.add(color);
@@ -104,7 +107,10 @@ export class PainelTurmasComponent implements OnInit, OnDestroy {
       this.subscriptions.push(this.turmaService.excluir(this.turma.id)
         .subscribe(() => {
           this.turma = {};
-          this.exibirAlert('Turma excluída com sucesso!', 'success');
+          //this.exibirAlert('Turma excluída com sucesso!', 'success');
+
+          alert("Turma Excluída")
+          this.openModalDelete = false;
           this.listarTurmas();
         },
           resposta => this.exibirAlert(resposta.error.message, 'danger')));
@@ -112,10 +118,22 @@ export class PainelTurmasComponent implements OnInit, OnDestroy {
 
   public fecharModal(){
     this.openModal=false;
+    this.openModalDelete = false;
   }
 
   public abrirModal(){
     this.openModal=true;
   }
 
+  public novaTurma(){
+    this.titleModal = "Cadastro de Turmas"
+    this.isNewTurma = false;
+  }
+  public updateTurma(){
+    
+  }
+  public abrirModalDelete() {
+    this.openModalDelete = true;
+    this.titleModal = "Voce realmente deseja excuir essa turma ?"
+  }
 }

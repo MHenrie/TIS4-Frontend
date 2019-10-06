@@ -50,6 +50,14 @@ export class LoginComponent implements OnInit, OnDestroy {
         .subscribe(objeto => {
           this.usuario = {};
           alert(`Bem-vindo(a) ${(<Usuario>objeto).nomeCompleto}!`)
+          localStorage.setItem('LoginBuenoBrandao','true');
+          localStorage.setItem('Nome',`${(<Usuario>objeto).nomeCompleto}`);
+          localStorage.setItem('Username', `${(<Usuario>objeto).username}`);
+          localStorage.setItem('Tipo', `${(<Usuario>objeto).tipo}`);
+          localStorage.setItem('ID', `${(<Usuario>objeto).id}`);
+          if(`${(<Usuario>objeto).tipo}` == "Administrador"){
+            open("/usuarios","_self")
+          }
         },
           resposta => this.exibirAlert(resposta.error.message, 'danger'));
   }

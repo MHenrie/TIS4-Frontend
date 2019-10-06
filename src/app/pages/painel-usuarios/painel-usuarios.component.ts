@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./painel-usuarios.component.scss']
 })
 export class PainelUsuariosComponent implements OnInit, OnDestroy {
+  openModalDelete = false;
   openModal = false;
   isNewUser = false;
   titleModal = "Formulário - Título";
@@ -111,27 +112,34 @@ export class PainelUsuariosComponent implements OnInit, OnDestroy {
       this.subscriptions.push(this.usuarioService.excluir(this.usuario.id)
         .subscribe(() => {
           this.usuario = {};
-          this.exibirAlert('Usuário excluído com sucesso!', 'success');
+          //this.exibirAlert('Usuário excluído com sucesso!', 'success');
+          alert("Usuário Excluído")
+          this.openModalDelete = false;
           this.listarTodos();
         },
           resposta => this.exibirAlert(resposta.error.message, 'danger')));
     }
   }
 
-  public fecharModal(){
-    this.openModal=false;
+  public fecharModal() {
+    this.openModal = false;
+    this.openModalDelete = false;
   }
 
-  public abrirModal(){
-    this.openModal=true;
+  public abrirModal() {
+    this.openModal = true;
   }
-  public updateUser(){
+  public updateUser() {
     this.isNewUser = true;
     this.titleModal = "Atualização de usuário"
   }
-  public newUser(){
+  public newUser() {
     this.isNewUser = false;
     this.titleModal = "Cadastro de usuário"
+  }
+  public abrirModalDelete() {
+    this.openModalDelete = true;
+    this.titleModal = "Voce realmente deseja excuir esse usuário ?"
   }
 
 }

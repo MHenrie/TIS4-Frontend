@@ -1,7 +1,11 @@
-<app-sidebar></app-sidebar>
+<app-header></app-header>
 <div id="container">
     <div class="backdrop-modal fade" [class.show]="openModal">
-        <div class="bg-white">
+        <div class="content-modal bg-white">
+            <div class="close-modal" (click)="fecharModal()">
+                <span>x</span>
+            </div>
+            <h3>{{titleModal}}</h3>
             <div id="alertTurma" class="alert" role="alert" [hidden]="alertHidden"></div>
             <input class="form-control" placeholder="Nome" type="text" [(ngModel)]="turma.nome"><br>
             <input class="form-control" placeholder="Série" type="text" [(ngModel)]="turma.serie"><br>
@@ -31,26 +35,108 @@
             </div>
         </div>
     </div>
+
+
+
+    <div class="backdrop-modal fade" [class.show]="openModalDelete">
+        <div class="content-modal bg-white">
+            <div class="close-modal" (click)="fecharModal()">
+                <span>x</span>
+            </div>
+            <h3>{{titleModal}}</h3>
+            <p>Turma: {{turma.nome}}</p>
+            <p>Serie: {{turma.serie}}</p>
+            <p>Ano: {{turma.ano}}</p>
+           <!-- <p>Professor da Turma:{{turma.professor}}</p>-->
+            <div id="alertTurma" class="alert" role="alert" [hidden]="alertHidden"></div>
+            <input class="form-control" placeholder="Nome" type="hidden" [(ngModel)]="turma.nome"><br>
+            <input class="form-control" placeholder="Série" type="hidden" [(ngModel)]="turma.serie"><br>
+            <input class="form-control" placeholder="Ano" type="hidden" [(ngModel)]="turma.ano"><br>
+            <select class="form-control d-none" type="number" [(ngModel)]="turma.professorId">
+                <option value="undefined" disabled selected>Professor</option>
+                <option *ngFor=" let professor of professores" [ngValue]="professor.id">
+                    <span>{{professor.nomeCompleto}} ({{professor.username}})</span>
+                </option>
+            </select>
+            <br>
+            <select class="form-control d-none" type="number" [(ngModel)]="turma.supervisorId">
+                <option value="undefined" disabled selected>Supervisor</option>
+                <option *ngFor="let supervisor of supervisores" [ngValue]="supervisor.id">
+                    <span>{{supervisor.nomeCompleto}} ({{supervisor.username}}) </span>
+                </option>
+            </select>
+            <br>
+            <div class="footer-modal">
+                <div class="w-100">
+                    <button type="button" class="btn btn-warning w-100" (click)="excluir()">Excluir Turma</button>
+                </div>
+                <div class="w-100 mt-3">
+
+                    <button type="button" class="btn btn-outline-danger w-100" (click)="fecharModal()">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <br><br>
-    <div class="p-4">
-        <h1>Listagem de turmas</h1>
-        <table class="table table-striped table-bordered">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Série</th>
-                    <th scope="col">Ano</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let turma of turmas" (click)="carregar(turma.id)">
-                    <td>{{turma.nome}}</td>
-                    <td>{{turma.serie}}</td>
-                    <td>{{turma.ano}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <button type="button" class="btn btn-outline-success w-100" (click)="abrirModal()">Adicionar nova
-            turma</button>
+    <div class="p-4 d-flex justify-content-center">
+        <div class="content-table">
+            <div>
+                <h1>Listagem de turmas</h1>
+            </div>
+            <div class="mb-3">
+                <button type="button" class="btn btn-outline-success w-100" (click)="abrirModal()" (click)="limpar()"
+                    (click)="newUser()">Adicionar nova turma</button>
+            </div>
+            <div class="table-overflow">
+                <div class="search-input d-flex justify-content-between position-relative">
+                    <input class="form-control mb-2" type="text" placeholder="Buscar turma">
+                    <img class="position-absolute" width="20px" src="../../../assets/img/icon-search.svg">
+                </div>
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Nome da turma</th>
+                            <th scope="col">Série</th>
+                            <th scope="col">Ano</th>
+                            <th scope="col">Operações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let turma of turmas">
+                            <td>{{turma.nome}}</td>
+                            <td>{{turma.serie}}</td>
+                            <td>{{turma.ano}}</td>
+                            <td class="line-options" (click)="carregar(turma.id)">
+                                <a class="position-relative">
+                                    <div class="dialog-description" [class.no-opacity]="turma.hover">
+                                        <p>Editar</p>
+                                        <div class="arrow"></div>
+                                    </div>
+                                    <a href="javascript:void(0)" (click)="updateTurma()">
+                                        <img src="../../../assets/img/icon-edit.svg" width="25px"
+                                            (click)="updateTurma()" (click)="abrirModal()"
+                                            (mouseenter)="turma.hover=true" (mouseleave)="turma.hover=false">
+                                    </a>
+                                </a>
+                                <a class="position-relative">
+                                    <div class="dialog-description" [class.no-opacity]="turma.hover2">
+                                        <p>Excluir</p>
+                                        <div class="arrow"></div>
+                                    </div>
+                                    <a href="javascript:void(0)">
+                                        <img src="../../../assets/img/icon-delete.svg" width="19px"
+                                            (mouseenter)="turma.hover2=true" (mouseleave)="turma.hover2=false" (click)="abrirModalDelete()">
+                                    </a>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
     </div>
 </div>
