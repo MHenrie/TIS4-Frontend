@@ -1,1 +1,120 @@
-<p>painel-itens-disciplinas works!</p>
+<app-header></app-header>
+<div id="container">
+    <div class="backdrop-modal fade" [class.show]="openModal">
+        <div class="content-modal bg-white">
+            <div class="close-modal" (click)="fecharModal()">
+                <img width="25px" src="../../../assets/img/icon-close.svg">
+            </div>
+            <h3>{{titleModal}}</h3>
+            <div id="alert" class="alert" role="alert" [hidden]="alertHidden"></div>
+            <label>Nome</label>
+            <input class="form-control" placeholder="Nome" type="text" [(ngModel)]="itemDisciplina.nome">
+            <label>Descrição</label>
+            <input class="form-control" placeholder="Descrição" type="text" [(ngModel)]="itemDisciplina.descricao">
+            <label>Objetivo</label>
+            <input class="form-control" placeholder="Objetivo" type="text" [(ngModel)]="itemDisciplina.objetivo">
+            <label>Disciplina</label>
+            <input class="form-control" placeholder="ID disciplina" type="text" [(ngModel)]="itemDisciplina.disciplinaId">
+            <div class="">
+                <div class="btn-block btn-group">
+                    <button type="button" class="btn btn-success  w-100" [class.d-none]="isNewDisciplina" (click)="adicionar()">Inserir</button>
+                    <button type="button" class="btn btn-info  w-100"  [class.d-none]="!isNewDisciplina" (click)="atualizar()">Finalizar edição</button>
+                    <!--<button type="button" class="btn btn-danger" (click)="excluir()">Excluir</button>-->
+                    <!--<button type="button" class="btn btn-secondary w-25" (click)="limpar()">Limpar</button>-->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="backdrop-modal fade" [class.show]="openModalDelete">
+        <div class="content-modal bg-white">
+            <div class="close-modal" (click)="fecharModal()">
+                <img width="25px" src="../../../assets/img/icon-close.svg">
+            </div>
+            <h3>{{titleModal}}</h3>
+
+            <p>Nome: {{itemDisciplina.nome}}</p>
+            <p>Descrição: {{itemDisciplina.descricao}}</p>
+            <p>Serie: {{itemDisciplina.serie}}</p>
+            <div id="alert" class="alert" role="alert" [hidden]="alertHidden"></div>
+
+            <input class="form-control" type="hidden" [(ngModel)]="itemDisciplina.nome">
+
+            <input class="form-control" type="hidden" [(ngModel)]="itemDisciplina.descricao">
+
+            <input class="form-control" type="hidden" [(ngModel)]="itemDisciplina.serie">
+
+
+
+            <div class="">
+                <div class="w-100">
+                    <button type="button" class="btn btn-warning w-100" (click)="excluir()">Excluir turma</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+    <div class="p-4 d-flex justify-content-center">
+        <div class="content-table">
+            <div class="mb-2">
+                <h1>Listagem de itens das disciplinas</h1>
+            </div>
+            <div class="mb-3">
+                <button type="button" class="btn btn-outline-success w-100" (click)="abrirModal()" (click)="limpar()"
+                    (click)="novoItemDisciplina()">Adicionar novo
+                    item de disciplina</button>
+            </div>
+            <div class="table-overflow">
+                <div class="search-input d-flex justify-content-between position-relative">
+                    <input class="form-control mb-2" type="text" placeholder="Buscar itemDisciplina">
+                    <img class="position-absolute" width="20px" src="../../../assets/img/icon-search.svg">
+                </div>
+                <div class="list-table">
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Nome da itemDisciplina</th>
+                                <th scope="col">Descrição</th>
+                                <th scope="col">Serie</th>
+                                <th scope="col">Operações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let itemDisciplina of itensDisciplinas">
+                                <td>{{itemDisciplina.nome}}</td>
+                                <td>{{itemDisciplina.descricao}}</td>
+                                <td>{{itemDisciplina.serie}}</td>
+                                <td class="line-options" (click)="carregar(itemDisciplina.id)">
+                                    <a class="position-relative">
+                                        <div class="dialog-description" [class.no-opacity]="itemDisciplina.hover">
+                                            <p>Editar</p>
+                                            <div class="arrow"></div>
+                                        </div>
+                                        <a href="javascript:void(0)">
+                                            <img src="../../../assets/img/icon-edit.svg" width="25px"
+                                                (click)="updateItemDisciplina()" (click)="abrirModal()"
+                                                (mouseenter)="itemDisciplina.hover=true" (mouseleave)="itemDisciplina.hover=false">
+                                        </a>
+                                    </a>
+                                    <a class="position-relative">
+                                        <div class="dialog-description" [class.no-opacity]="itemDisciplina.hover2">
+                                            <p>Excluir</p>
+                                            <div class="arrow"></div>
+                                        </div>
+                                        <a href="javascript:void(0)">
+                                            <img src="../../../assets/img/icon-delete.svg" width="19px"
+                                                (mouseenter)="itemDisciplina.hover2=true" (mouseleave)="itemDisciplina.hover2=false"
+                                                (click)="updateItemDisciplina()" (click)="abrirModalDelete()">
+                                        </a>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

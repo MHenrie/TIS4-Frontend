@@ -12,9 +12,10 @@
     }
     & .links{
         display: flex;
-        width: 300px;
+        width: 365px;
         align-items: center;
         justify-content: space-between;
+        margin-left: 500px;
         @media (max-width: 992px){
             display: none;
         }
