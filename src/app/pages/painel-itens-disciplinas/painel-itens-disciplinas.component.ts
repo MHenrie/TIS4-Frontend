@@ -15,6 +15,7 @@ export class PainelItensDisciplinasComponent implements OnInit {
   titleModal = "";
   isNewDisciplina = false;
   public itemDisciplina: ItemDisciplina = {};
+
   public itensDisciplinas: ItemDisciplina[] = [];
   public alertHidden: boolean = true;
 

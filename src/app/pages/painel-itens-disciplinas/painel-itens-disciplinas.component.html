@@ -13,8 +13,8 @@
             <input class="form-control" placeholder="Descrição" type="text" [(ngModel)]="itemDisciplina.descricao">
             <label>Objetivo</label>
             <input class="form-control" placeholder="Objetivo" type="text" [(ngModel)]="itemDisciplina.objetivo">
-            <label>Disciplina</label>
-            <input class="form-control" placeholder="ID disciplina" type="text" [(ngModel)]="itemDisciplina.disciplinaId">
+            <label>Disciplina ID</label>
+            <input class="form-control" placeholder="ID disciplina" type="number" [(ngModel)]="itemDisciplina.disciplinaId">
             <div class="">
                 <div class="btn-block btn-group">
                     <button type="button" class="btn btn-success  w-100" [class.d-none]="isNewDisciplina" (click)="adicionar()">Inserir</button>
@@ -77,7 +77,7 @@
                             <tr>
                                 <th scope="col">Nome da itemDisciplina</th>
                                 <th scope="col">Descrição</th>
-                                <th scope="col">Serie</th>
+                                <th scope="col">Objetivo</th>
                                 <th scope="col">Operações</th>
                             </tr>
                         </thead>
@@ -85,7 +85,7 @@
                             <tr *ngFor="let itemDisciplina of itensDisciplinas">
                                 <td>{{itemDisciplina.nome}}</td>
                                 <td>{{itemDisciplina.descricao}}</td>
-                                <td>{{itemDisciplina.serie}}</td>
+                                <td>{{itemDisciplina.objetivo}}</td>
                                 <td class="line-options" (click)="carregar(itemDisciplina.id)">
                                     <a class="position-relative">
                                         <div class="dialog-description" [class.no-opacity]="itemDisciplina.hover">
