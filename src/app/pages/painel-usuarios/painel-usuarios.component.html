@@ -3,9 +3,10 @@
     <div class="backdrop-modal fade" [class.show]="openModal">
         <div class="content-modal bg-white">
             <div class="close-modal" (click)="fecharModal()">
-                <span>x</span>
+                <img width="25px" src="../../../assets/img/icon-close.svg">
             </div>
             <h3>{{titleModal}}</h3>
+            <div id="alert" class="alert" role="alert" [hidden]="alertHidden"></div>
             <label>Nome</label>
             <input class="form-control" placeholder="Nome" type="text" [(ngModel)]="usuario.nomeCompleto">
             <label>Usuário</label>
@@ -27,19 +28,19 @@
             <button class="btn btn-outline-primary btn-block mb-2" [hidden]="mesmaSenha" *ngIf="usuario.id"
                 (click)="manterSenha()">Manter Senha Antiga</button>
 
-            <div id="alert" class="alert" role="alert" [hidden]="alertHidden"></div>
 
-            <div class="footer-modal">
+
+            <div class="">
                 <div class="btn-block btn-group">
-                    <button type="button" class="btn btn-success  w-75" *ngIf="!isNewUser" [(ngModel)]="isNewUser"
+                    <button type="button" class="btn btn-success  w-100" [class.d-none]="isNewUser"
                         (click)="adicionar()">Inserir</button>
-                    <button type="button" class="btn btn-info  w-75" *ngIf="isNewUser" [(ngModel)]="isNewUser"
+                    <button type="button" class="btn btn-info  w-100" [class.d-none]="!isNewUser"
                         (click)="atualizar()">Finalizar edição</button>
                     <!--<button type="button" class="btn btn-danger" (click)="excluir()">Excluir</button>-->
-                    <button type="button" class="btn btn-secondary w-25" (click)="limpar()">Limpar</button>
+                    <!--<button type="button" class="btn btn-secondary w-25" (click)="limpar()">Limpar</button>-->
                 </div>
 
-                <div class="w-100 mt-3">
+                <div class="w-100 mt-3 d-none">
                     <button type="button" class="btn btn-outline-danger w-100" (click)="fecharModal()">Fechar</button>
                 </div>
             </div>
@@ -49,7 +50,7 @@
     <div class="backdrop-modal fade" [class.show]="openModalDelete">
         <div class="content-modal bg-white">
             <div class="close-modal" (click)="fecharModal()">
-                <span>x</span>
+                <img width="25px" src="../../../assets/img/icon-close.svg">
             </div>
             <h3>{{titleModal}}</h3>
 

@@ -127,13 +127,15 @@ export class PainelTurmasComponent implements OnInit, OnDestroy {
 
   public novaTurma(){
     this.titleModal = "Cadastro de Turmas"
-    this.isNewTurma = false;
+    this.isNewTurma = true;
   }
   public updateTurma(){
-    
+    this.titleModal = "Atualização de Turma"
+    this.isNewTurma = false;
   }
   public abrirModalDelete() {
     this.openModalDelete = true;
+    
     this.titleModal = "Voce realmente deseja excuir essa turma ?"
   }
 }

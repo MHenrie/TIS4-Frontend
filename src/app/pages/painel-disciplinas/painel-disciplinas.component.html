@@ -1,2 +1,123 @@
 <app-header></app-header>
-<p>painel-disciplinas works!</p>
+<div id="container">
+    <div class="backdrop-modal fade" [class.show]="openModal">
+        <div class="content-modal bg-white">
+            <div class="close-modal" (click)="fecharModal()">
+                <img width="25px" src="../../../assets/img/icon-close.svg">
+            </div>
+            <h3>{{titleModal}}</h3>
+            <div id="alert" class="alert" role="alert" [hidden]="alertHidden"></div>
+            <label>Nome</label>
+            <input class="form-control" placeholder="Nome" type="text" [(ngModel)]="disciplina.nome">
+            <label>Descrição</label>
+            <input class="form-control" placeholder="Username" type="text" [(ngModel)]="disciplina.descricao">
+            <label>Serie</label>
+            <input class="form-control" placeholder="Serie" type="text" [(ngModel)]="disciplina.serie">
+
+            <div class="">
+                <div class="btn-block btn-group">
+                    <button type="button" class="btn btn-success  w-100" [class.d-none]="!isNewDisciplina" (click)="adicionar()">Inserir</button>
+                    <button type="button" class="btn btn-info  w-100"  [class.d-none]="isNewDisciplina" (click)="atualizar()">Finalizar edição</button>
+                    <!--<button type="button" class="btn btn-danger" (click)="excluir()">Excluir</button>-->
+                    <!--<button type="button" class="btn btn-secondary w-25" (click)="limpar()">Limpar</button>-->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="backdrop-modal fade" [class.show]="openModalDelete">
+        <div class="content-modal bg-white">
+            <div class="close-modal" (click)="fecharModal()">
+                <img width="25px" src="../../../assets/img/icon-close.svg">
+            </div>
+            <h3>{{titleModal}}</h3>
+
+            <p>Nome: {{disciplina.nome}}</p>
+            <p>Descrição: {{disciplina.descricao}}</p>
+            <p>Serie: {{disciplina.serie}}</p>
+            <div id="alert" class="alert" role="alert" [hidden]="alertHidden"></div>
+
+            <input class="form-control" type="hidden" [(ngModel)]="disciplina.nome">
+
+            <input class="form-control" type="hidden" [(ngModel)]="disciplina.descricao">
+
+            <input class="form-control" type="hidden" [(ngModel)]="disciplina.serie">
+
+
+
+            <div class="">
+                <div class="w-100">
+                    <button type="button" class="btn btn-warning w-100" (click)="excluir()">Excluir turma</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+    <div class="p-4 d-flex justify-content-center">
+        <div class="content-table">
+            <div class="mb-2">
+                <h1>Listagem de disciplinas</h1>
+            </div>
+            <div class="mb-3">
+                <button type="button" class="btn btn-outline-success w-100" (click)="abrirModal()" (click)="limpar()"
+                    (click)="novaDisciplina()">Adicionar nova
+                    disciplina</button>
+            </div>
+            <div class="table-overflow">
+                <div class="search-input d-flex justify-content-between position-relative">
+                    <input class="form-control mb-2" type="text" placeholder="Buscar disciplina">
+                    <img class="position-absolute" width="20px" src="../../../assets/img/icon-search.svg">
+                </div>
+                <div class="list-table">
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Nome da disciplina</th>
+                                <th scope="col">Descrição</th>
+                                <th scope="col">Serie</th>
+                                <th scope="col">Operações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let disciplina of disciplinas">
+                                <td>{{disciplina.nome}}</td>
+                                <td>{{disciplina.descricao}}</td>
+                                <td>{{disciplina.serie}}</td>
+                                <td class="line-options" (click)="carregar(disciplina.id)">
+                                    <a class="position-relative">
+                                        <div class="dialog-description" [class.no-opacity]="disciplina.hover">
+                                            <p>Editar</p>
+                                            <div class="arrow"></div>
+                                        </div>
+                                        <a href="javascript:void(0)">
+                                            <img src="../../../assets/img/icon-edit.svg" width="25px"
+                                                (click)="updateDisciplina()" (click)="abrirModal()"
+                                                (mouseenter)="disciplina.hover=true" (mouseleave)="disciplina.hover=false">
+                                        </a>
+                                    </a>
+                                    <a class="position-relative">
+                                        <div class="dialog-description" [class.no-opacity]="disciplina.hover2">
+                                            <p>Excluir</p>
+                                            <div class="arrow"></div>
+                                        </div>
+                                        <a href="javascript:void(0)">
+                                            <img src="../../../assets/img/icon-delete.svg" width="19px"
+                                                (mouseenter)="disciplina.hover2=true" (mouseleave)="disciplina.hover2=false"
+                                                (click)="updateDisciplina()" (click)="abrirModalDelete()">
+                                        </a>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

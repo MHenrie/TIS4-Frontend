@@ -3,7 +3,7 @@
     <div class="backdrop-modal fade" [class.show]="openModal">
         <div class="content-modal bg-white">
             <div class="close-modal" (click)="fecharModal()">
-                <span>x</span>
+                <img width="25px" src="../../../assets/img/icon-close.svg">
             </div>
             <h3>{{titleModal}}</h3>
             <div id="alertTurma" class="alert" role="alert" [hidden]="alertHidden"></div>
@@ -25,13 +25,8 @@
             </select>
             <br>
             <div class="btn-group btn-block">
-                <button type="button" class="btn btn-success" (click)="adicionar()">Inserir</button>
-                <button type="button" class="btn btn-info" (click)="atualizar()">Editar</button>
-                <button type="button" class="btn btn-danger" (click)="excluir()">Excluir</button>
-                <button type="button" class="btn btn-secondary" (click)="limpar()">Limpar</button>
-            </div>
-            <div class="w-100 mt-3">
-                <button type="button" class="btn btn-outline-danger w-100" (click)="fecharModal()">Fechar</button>
+                <button type="button" class="btn btn-success w-100" (click)="adicionar()"  [class.d-none]="!isNewTurma">Inserir</button>
+                <button type="button" class="btn btn-info w-100" (click)="atualizar()" [class.d-none]="isNewTurma" >Finalizar Ediçao</button>
             </div>
         </div>
     </div>
@@ -41,7 +36,7 @@
     <div class="backdrop-modal fade" [class.show]="openModalDelete">
         <div class="content-modal bg-white">
             <div class="close-modal" (click)="fecharModal()">
-                <span>x</span>
+                <img width="25px" src="../../../assets/img/icon-close.svg">
             </div>
             <h3>{{titleModal}}</h3>
             <p>Turma: {{turma.nome}}</p>
@@ -88,7 +83,7 @@
             </div>
             <div class="mb-3">
                 <button type="button" class="btn btn-outline-success w-100" (click)="abrirModal()" (click)="limpar()"
-                    (click)="newUser()">Adicionar nova turma</button>
+                    (click)="novaTurma()">Adicionar nova turma</button>
             </div>
             <div class="table-overflow">
                 <div class="search-input d-flex justify-content-between position-relative">
