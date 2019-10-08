@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ItemDisciplinaService } from 'src/app/services/item-disciplina.service';
 import { ItemDisciplina } from 'src/app/interfaces/item-disciplina';
 import { Subscription } from 'rxjs';
+import { DisciplinaService } from 'src/app/services/disciplina.service';
+import { Disciplina } from 'src/app/interfaces/disciplina';
 
 @Component({
   selector: 'app-painel-itens-disciplinas',
@@ -19,12 +21,15 @@ export class PainelItensDisciplinasComponent implements OnInit {
   public itensDisciplinas: ItemDisciplina[] = [];
   public alertHidden: boolean = true;
 
+  public disciplinas: Disciplina[] = [];
+
   private subscriptions: Subscription[] = [];
 
-  constructor(private itemService: ItemDisciplinaService) { }
+  constructor(private itemService: ItemDisciplinaService, private disciplinaService: DisciplinaService) { }
 
   ngOnInit() {
     this.listarTodos();
+    this.listarDisciplinas();
   }
 
   ngOnDestroy() {
@@ -68,13 +73,14 @@ export class PainelItensDisciplinasComponent implements OnInit {
 
   public adicionar(): void {
     if (this.camposPreenchidos())
-      this.subscriptions.push(this.itemService.adicionar(this.itemDisciplina)
-        .subscribe(() => {
-          this.itemDisciplina = {};
-          this.exibirAlert('Item cadastrado com sucesso!', 'success');
-          this.listarTodos();
-        },
-          resposta => this.exibirAlert(resposta.error.message, 'danger')));
+      console.log(this.itemDisciplina);
+    this.subscriptions.push(this.itemService.adicionar(this.itemDisciplina)
+      .subscribe(() => {
+        this.itemDisciplina = {};
+        this.exibirAlert('Item cadastrado com sucesso!', 'success');
+        this.listarTodos();
+      },
+        resposta => this.exibirAlert(resposta.error.message, 'danger')));
   }
 
   public atualizar(): void {
@@ -99,26 +105,31 @@ export class PainelItensDisciplinasComponent implements OnInit {
           resposta => this.exibirAlert(resposta.error.message, 'danger')));
   }
 
-  public fecharModal(){
-    this.openModal=false;
+  public listarDisciplinas(): void {
+    this.subscriptions.push(this.disciplinaService.listarTodas()
+      .subscribe(lista => this.disciplinas = <Disciplina[]>lista));
+  }
+
+  public fecharModal() {
+    this.openModal = false;
     this.openModalDelete = false;
   }
 
-  public abrirModal(){
-    this.openModal=true;
+  public abrirModal() {
+    this.openModal = true;
   }
 
-  public novoItemDisciplina(){
+  public novoItemDisciplina() {
     this.titleModal = "Cadastro de Item"
     this.isNewDisciplina = true;
   }
-  public updateItemDisciplina(){
+  public updateItemDisciplina() {
     this.titleModal = "Atualização de Item"
     this.isNewDisciplina = false;
   }
   public abrirModalDelete() {
     this.openModalDelete = true;
-    
+
     this.titleModal = "Voce realmente deseja excuir esse item  ?"
   }
 }

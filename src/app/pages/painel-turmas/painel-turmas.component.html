@@ -8,7 +8,12 @@
             <h3>{{titleModal}}</h3>
             <div id="alertTurma" class="alert" role="alert" [hidden]="alertHidden"></div>
             <input class="form-control" placeholder="Nome" type="text" [(ngModel)]="turma.nome"><br>
-            <input class="form-control" placeholder="Série" type="text" [(ngModel)]="turma.serie"><br>
+            <select class="form-control" type="text" [(ngModel)]="turma.serie">
+                <option value="undefined" disabled selected>Série</option>
+                <option value="1º Ano">1º Ano</option>
+                <option value="2º Ano">2º Ano</option>
+                <option value="3º Ano">3º Ano</option>
+            </select><br>
             <input class="form-control" placeholder="Ano" type="number" [(ngModel)]="turma.ano"><br>
             <select class="form-control" type="number" [(ngModel)]="turma.professorId">
                 <option value="undefined" disabled selected>Professor</option>
@@ -25,8 +30,10 @@
             </select>
             <br>
             <div class="btn-group btn-block">
-                <button type="button" class="btn btn-success w-100" (click)="adicionar()"  [class.d-none]="!isNewTurma">Inserir</button>
-                <button type="button" class="btn btn-info w-100" (click)="atualizar()" [class.d-none]="isNewTurma" >Finalizar Ediçao</button>
+                <button type="button" class="btn btn-success w-100" (click)="adicionar()"
+                    [class.d-none]="!isNewTurma">Inserir</button>
+                <button type="button" class="btn btn-info w-100" (click)="atualizar()"
+                    [class.d-none]="isNewTurma">Finalizar Ediçao</button>
             </div>
         </div>
     </div>
@@ -42,7 +49,7 @@
             <p>Turma: {{turma.nome}}</p>
             <p>Serie: {{turma.serie}}</p>
             <p>Ano: {{turma.ano}}</p>
-           <!-- <p>Professor da Turma:{{turma.professor}}</p>-->
+            <!-- <p>Professor da Turma:{{turma.professor}}</p>-->
             <div id="alertTurma" class="alert" role="alert" [hidden]="alertHidden"></div>
             <input class="form-control" placeholder="Nome" type="hidden" [(ngModel)]="turma.nome"><br>
             <input class="form-control" placeholder="Série" type="hidden" [(ngModel)]="turma.serie"><br>
@@ -63,11 +70,7 @@
             <br>
             <div class="footer-modal">
                 <div class="w-100">
-                    <button type="button" class="btn btn-warning w-100" (click)="excluir()">Excluir Turma</button>
-                </div>
-                <div class="w-100 mt-3">
-
-                    <button type="button" class="btn btn-outline-danger w-100" (click)="fecharModal()">Fechar</button>
+                    <button type="button" class="btn btn-danger w-100" (click)="excluir()">Excluir Turma</button>
                 </div>
             </div>
         </div>
@@ -82,7 +85,7 @@
                 <h1>Listagem de turmas</h1>
             </div>
             <div class="mb-3">
-                <button type="button" class="btn btn-outline-success w-100" (click)="abrirModal()" (click)="limpar()"
+                <button type="button" class="btn btn-info w-100" (click)="abrirModal()" (click)="limpar()"
                     (click)="novaTurma()">Adicionar nova turma</button>
             </div>
             <div class="table-overflow">
@@ -123,7 +126,8 @@
                                     </div>
                                     <a href="javascript:void(0)">
                                         <img src="../../../assets/img/icon-delete.svg" width="19px"
-                                            (mouseenter)="turma.hover2=true" (mouseleave)="turma.hover2=false" (click)="abrirModalDelete()">
+                                            (mouseenter)="turma.hover2=true" (mouseleave)="turma.hover2=false"
+                                            (click)="abrirModalDelete()">
                                     </a>
                                 </a>
                             </td>

@@ -16,11 +16,11 @@ export class HeaderComponent implements OnInit {
   }
 
   public logout(){
-    localStorage.setItem('LoginBuenoBrandao','false');
-    localStorage.setItem('Nome',"");
-    localStorage.setItem('Username', "");
-    localStorage.setItem('Tipo', "");
-    localStorage.setItem('ID', "");
+    localStorage.removeItem('LoginBuenoBrandao');
+    localStorage.removeItem('Nome');
+    localStorage.removeItem('Username');
+    localStorage.removeItem('Tipo');
+    localStorage.removeItem('ID');
     open('/login','_self')
   }
 }
