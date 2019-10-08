@@ -81,7 +81,7 @@
     <br><br>
     <div class="p-4 d-flex justify-content-center">
         <div class="content-table">
-            <div>
+            <div class="mb-2">
                 <h1>Listagem de turmas</h1>
             </div>
             <div class="mb-3">
@@ -93,47 +93,51 @@
                     <input class="form-control mb-2" type="text" placeholder="Buscar turma">
                     <img class="position-absolute" width="20px" src="../../../assets/img/icon-search.svg">
                 </div>
-                <table class="table table-striped">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Nome da turma</th>
-                            <th scope="col">Série</th>
-                            <th scope="col">Ano</th>
-                            <th scope="col">Operações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let turma of turmas">
-                            <td>{{turma.nome}}</td>
-                            <td>{{turma.serie}}</td>
-                            <td>{{turma.ano}}</td>
-                            <td class="line-options" (click)="carregar(turma.id)">
-                                <a class="position-relative">
-                                    <div class="dialog-description" [class.no-opacity]="turma.hover">
-                                        <p>Editar</p>
-                                        <div class="arrow"></div>
+                <div class="list-table">
+                    <table class="table">
+                        <thead class="">
+                            <tr>
+                                <th scope="col">Nome da turma</th>
+                                <th scope="col">Série</th>
+                                <th scope="col">Ano</th>
+                                <th scope="col" class="text-center">Operações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let turma of turmas">
+                                <td>{{turma.nome}}</td>
+                                <td>{{turma.serie}}</td>
+                                <td>{{turma.ano}}</td>
+                                <td (click)="carregar(turma.id)">
+                                    <div class="line-opts">
+                                        <a class="position-relative">
+                                            <div class="dialog-description" [class.no-opacity]="turma.hover">
+                                                <p>Editar</p>
+                                                <div class="arrow"></div>
+                                            </div>
+                                            <a href="javascript:void(0)" (click)="updateTurma()">
+                                                <img src="../../../assets/img/icon-edit.svg" width="25px"
+                                                    (click)="updateTurma()" (click)="abrirModal()"
+                                                    (mouseenter)="turma.hover=true" (mouseleave)="turma.hover=false">
+                                            </a>
+                                        </a>
+                                        <a class="position-relative">
+                                            <div class="dialog-description" [class.no-opacity]="turma.hover2">
+                                                <p>Excluir</p>
+                                                <div class="arrow"></div>
+                                            </div>
+                                            <a href="javascript:void(0)">
+                                                <img src="../../../assets/img/icon-delete.svg" width="19px"
+                                                    (mouseenter)="turma.hover2=true" (mouseleave)="turma.hover2=false"
+                                                    (click)="abrirModalDelete()">
+                                            </a>
+                                        </a>
                                     </div>
-                                    <a href="javascript:void(0)" (click)="updateTurma()">
-                                        <img src="../../../assets/img/icon-edit.svg" width="25px"
-                                            (click)="updateTurma()" (click)="abrirModal()"
-                                            (mouseenter)="turma.hover=true" (mouseleave)="turma.hover=false">
-                                    </a>
-                                </a>
-                                <a class="position-relative">
-                                    <div class="dialog-description" [class.no-opacity]="turma.hover2">
-                                        <p>Excluir</p>
-                                        <div class="arrow"></div>
-                                    </div>
-                                    <a href="javascript:void(0)">
-                                        <img src="../../../assets/img/icon-delete.svg" width="19px"
-                                            (mouseenter)="turma.hover2=true" (mouseleave)="turma.hover2=false"
-                                            (click)="abrirModalDelete()">
-                                    </a>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
         </div>

@@ -78,7 +78,7 @@
                 </div>
                 <div class="list-table">
                     <table class="table">
-                        <thead class="thead-dark">
+                        <thead class="">
                             <tr>
                                 <th scope="col">Nome da disciplina</th>
                                 <th scope="col">Descrição</th>
@@ -91,31 +91,33 @@
                                 <td>{{disciplina.nome}}</td>
                                 <td>{{disciplina.descricao}}</td>
                                 <td>{{disciplina.serie}}</td>
-                                <td class="line-options" (click)="carregar(disciplina.id)">
-                                    <a class="position-relative">
-                                        <div class="dialog-description" [class.no-opacity]="disciplina.hover">
-                                            <p>Editar</p>
-                                            <div class="arrow"></div>
-                                        </div>
-                                        <a href="javascript:void(0)">
-                                            <img src="../../../assets/img/icon-edit.svg" width="25px"
-                                                (click)="updateDisciplina()" (click)="abrirModal()"
-                                                (mouseenter)="disciplina.hover=true"
-                                                (mouseleave)="disciplina.hover=false">
+                                <td (click)="carregar(disciplina.id)">
+                                    <div class="line-opts">
+                                        <a class="position-relative">
+                                            <div class="dialog-description" [class.no-opacity]="disciplina.hover">
+                                                <p>Editar</p>
+                                                <div class="arrow"></div>
+                                            </div>
+                                            <a href="javascript:void(0)">
+                                                <img src="../../../assets/img/icon-edit.svg" width="25px"
+                                                    (click)="updateDisciplina()" (click)="abrirModal()"
+                                                    (mouseenter)="disciplina.hover=true"
+                                                    (mouseleave)="disciplina.hover=false">
+                                            </a>
                                         </a>
-                                    </a>
-                                    <a class="position-relative">
-                                        <div class="dialog-description" [class.no-opacity]="disciplina.hover2">
-                                            <p>Excluir</p>
-                                            <div class="arrow"></div>
-                                        </div>
-                                        <a href="javascript:void(0)">
-                                            <img src="../../../assets/img/icon-delete.svg" width="19px"
-                                                (mouseenter)="disciplina.hover2=true"
-                                                (mouseleave)="disciplina.hover2=false" (click)="updateDisciplina()"
-                                                (click)="abrirModalDelete()">
+                                        <a class="position-relative">
+                                            <div class="dialog-description" [class.no-opacity]="disciplina.hover2">
+                                                <p>Excluir</p>
+                                                <div class="arrow"></div>
+                                            </div>
+                                            <a href="javascript:void(0)">
+                                                <img src="../../../assets/img/icon-delete.svg" width="19px"
+                                                    (mouseenter)="disciplina.hover2=true"
+                                                    (mouseleave)="disciplina.hover2=false" (click)="updateDisciplina()"
+                                                    (click)="abrirModalDelete()">
+                                            </a>
                                         </a>
-                                    </a>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>

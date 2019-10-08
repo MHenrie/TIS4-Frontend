@@ -80,11 +80,18 @@
     </div>
 
     <br><br>
-    <div class="p-4 d-flex justify-content-center">
+    <div class="banner">
+
+        <p>Listagem de Usuários</p>
+        <img class="d-none d-lg-block" src="../../../assets/img/Header-Tables.jpg">
+
+        <img class="d-block d-lg-none" src="">
+
+        
+    </div>
+    <div class="d-flex justify-content-center">
         <div class="content-table">
-            <div class="mb-2">
-                <h1>Listagem de usuários</h1>
-            </div>
+
             <div class="mb-3">
                 <button type="button" class="btn btn-info w-100" (click)="abrirModal()" (click)="limpar()"
                     (click)="newUser()">Adicionar novo
@@ -96,13 +103,13 @@
                     <img class="position-absolute" width="20px" src="../../../assets/img/icon-search.svg">
                 </div>
                 <div class="list-table">
-                    <table class="table table-striped">
-                        <thead class="thead-dark">
+                    <table class="table">
+                        <thead class="">
                             <tr>
                                 <th scope="col">Nome Completo</th>
                                 <th scope="col">Tipo</th>
                                 <th scope="col">Username</th>
-                                <th scope="col">Operações</th>
+                                <th scope="col" class="text-center">Operações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -110,29 +117,33 @@
                                 <td>{{usuario.nomeCompleto}}</td>
                                 <td>{{usuario.tipo}}</td>
                                 <td>{{usuario.username}}</td>
-                                <td class="line-options" (click)="carregar(usuario.username)">
-                                    <a class="position-relative">
-                                        <div class="dialog-description" [class.no-opacity]="usuario.hover">
-                                            <p>Editar</p>
-                                            <div class="arrow"></div>
-                                        </div>
-                                        <a href="javascript:void(0)">
-                                            <img src="../../../assets/img/icon-edit.svg" width="25px"
-                                                (click)="updateUser()" (click)="abrirModal()"
-                                                (mouseenter)="usuario.hover=true" (mouseleave)="usuario.hover=false">
+                                <td (click)="carregar(usuario.username)">
+                                    <div class="line-opts">
+                                        <a class="position-relative">
+                                            <div class="dialog-description" [class.no-opacity]="usuario.hover">
+                                                <p>Editar</p>
+                                                <div class="arrow"></div>
+                                            </div>
+                                            <a href="javascript:void(0)">
+                                                <img src="../../../assets/img/icon-edit.svg" width="25px"
+                                                    (click)="updateUser()" (click)="abrirModal()"
+                                                    (mouseenter)="usuario.hover=true"
+                                                    (mouseleave)="usuario.hover=false">
+                                            </a>
                                         </a>
-                                    </a>
-                                    <a class="position-relative">
-                                        <div class="dialog-description" [class.no-opacity]="usuario.hover2">
-                                            <p>Excluir</p>
-                                            <div class="arrow"></div>
-                                        </div>
-                                        <a href="javascript:void(0)">
-                                            <img src="../../../assets/img/icon-delete.svg" width="19px"
-                                                (mouseenter)="usuario.hover2=true" (mouseleave)="usuario.hover2=false"
-                                                (click)="updateUser()" (click)="abrirModalDelete()">
+                                        <a class="position-relative">
+                                            <div class="dialog-description" [class.no-opacity]="usuario.hover2">
+                                                <p>Excluir</p>
+                                                <div class="arrow"></div>
+                                            </div>
+                                            <a href="javascript:void(0)">
+                                                <img src="../../../assets/img/icon-delete.svg" width="19px"
+                                                    (mouseenter)="usuario.hover2=true"
+                                                    (mouseleave)="usuario.hover2=false" (click)="updateUser()"
+                                                    (click)="abrirModalDelete()">
+                                            </a>
                                         </a>
-                                    </a>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>

@@ -1,13 +1,22 @@
+#body{
+    background-image: url('../../../assets/img/BG1-EEBB-Desfoque.png');
+    background-repeat: no-repeat;
+    position: absolute;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+
 .login{
     position: absolute;
     left: 50%;
     right: 50%;
-    width: 40%;
+    width: 350px;
+    height: 380px;
     border-radius: 10px;
-    border: 1px solid rgb(158, 158, 158);
-    padding: 10px 30px;
-    transform: translate(-50%,50%);
-    @media (max-width: 992px){
-        width: 90%;
-    }
+    border: 1px solid #9e9e9e;
+    padding: 30px;
+    transform: translate(-50%, 50%);
+    background-color: white;
 }
