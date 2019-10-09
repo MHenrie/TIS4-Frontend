@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'turmas', component: PainelTurmasComponent },
   { path: 'usuarios', component: PainelUsuariosComponent },
   { path: 'disciplinas', component: PainelDisciplinasComponent },
+  { path: 'disciplinas/:disciplina', redirectTo:'itens-disciplinas#aaa', pathMatch:'full' },
   { path: 'itens-disciplinas', component: PainelItensDisciplinasComponent }
 ];
 

@@ -9,10 +9,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./painel-usuarios.component.scss']
 })
 export class PainelUsuariosComponent implements OnInit, OnDestroy {
-  openModalDelete = false;
-  openModal = false;
-  isNewUser = false;
-  titleModal = "Formulário - Título";
+  public openModalDelete = false;
+  public openModal = false;
+  public isNewUser = false;
+  public btnGoTop = false;
+  public titleModal = "Formulário - Título";
   public usuario: Usuario = {};
   public usuarios: Usuario[] = [];
   public alertHidden: boolean = true;
@@ -25,6 +26,14 @@ export class PainelUsuariosComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.listarTodos();
+    document.addEventListener("scroll", e => {
+      if(window.scrollY >= 300){
+        this.btnGoTop = true;
+
+      }else{
+        this.btnGoTop = false;
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -132,6 +141,7 @@ export class PainelUsuariosComponent implements OnInit, OnDestroy {
   public updateUser() {
     this.isNewUser = true;
     this.titleModal = "Atualização de usuário"
+    window.scrollTo(0, 0)
   }
   public newUser() {
     this.isNewUser = false;
@@ -140,6 +150,10 @@ export class PainelUsuariosComponent implements OnInit, OnDestroy {
   public abrirModalDelete() {
     this.openModalDelete = true;
     this.titleModal = "Voce realmente deseja excuir esse usuário ?"
+  }
+
+  public goTop(){
+    window.scrollTo(0,0);
   }
 
 }

@@ -85,71 +85,93 @@
         <p>Listagem de Usuários</p>
         <img class="d-none d-lg-block" src="../../../assets/img/Header-Tables.jpg">
 
-        <img class="d-block d-lg-none" src="">
+        <img class="d-block d-lg-none" src="../../../assets/img/Header-Tables-mobile.jpg">
 
-        
+
     </div>
     <div class="d-flex justify-content-center">
+
         <div class="content-table">
 
-            <div class="mb-3">
-                <button type="button" class="btn btn-info w-100" (click)="abrirModal()" (click)="limpar()"
+            <div>
+                <button type="button" class="btn btn-info w-100 mb-3" (click)="abrirModal()" (click)="limpar()"
                     (click)="newUser()">Adicionar novo
                     usuário</button>
-            </div>
-            <div class="table-overflow">
-                <div class="search-input d-flex justify-content-between position-relative">
+
+                <div class="search-input d-flex justify-content-between position-relative mb-3">
                     <input class="form-control mb-2" type="text" placeholder="Buscar usuário">
                     <img class="position-absolute" width="20px" src="../../../assets/img/icon-search.svg">
                 </div>
-                <div class="list-table">
-                    <table class="table">
-                        <thead class="">
-                            <tr>
-                                <th scope="col">Nome Completo</th>
-                                <th scope="col">Tipo</th>
-                                <th scope="col">Username</th>
-                                <th scope="col" class="text-center">Operações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let usuario of usuarios">
-                                <td>{{usuario.nomeCompleto}}</td>
-                                <td>{{usuario.tipo}}</td>
-                                <td>{{usuario.username}}</td>
-                                <td (click)="carregar(usuario.username)">
-                                    <div class="line-opts">
-                                        <a class="position-relative">
-                                            <div class="dialog-description" [class.no-opacity]="usuario.hover">
-                                                <p>Editar</p>
-                                                <div class="arrow"></div>
-                                            </div>
-                                            <a href="javascript:void(0)">
-                                                <img src="../../../assets/img/icon-edit.svg" width="25px"
-                                                    (click)="updateUser()" (click)="abrirModal()"
-                                                    (mouseenter)="usuario.hover=true"
-                                                    (mouseleave)="usuario.hover=false">
-                                            </a>
-                                        </a>
-                                        <a class="position-relative">
-                                            <div class="dialog-description" [class.no-opacity]="usuario.hover2">
-                                                <p>Excluir</p>
-                                                <div class="arrow"></div>
-                                            </div>
-                                            <a href="javascript:void(0)">
-                                                <img src="../../../assets/img/icon-delete.svg" width="19px"
-                                                    (mouseenter)="usuario.hover2=true"
-                                                    (mouseleave)="usuario.hover2=false" (click)="updateUser()"
-                                                    (click)="abrirModalDelete()">
-                                            </a>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                <div class="d-flex justify-content-around mb-3">
+                    <div>
+                        Filtro 1
+                    </div>
+
+                    <div>
+                       Filtro 2
+                    </div>
+
+                    <div>
+                        Filtro 3
+                    </div>
+
+
                 </div>
             </div>
+            <div class="table-overflow">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nome Completo</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Username</th>
+                            <th scope="col" class="text-center">Operações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let usuario of usuarios">
+                            <td>{{usuario.nomeCompleto}}</td>
+                            <td>{{usuario.tipo}}</td>
+                            <td>{{usuario.username}}</td>
+                            <td (click)="carregar(usuario.username)">
+                                <div class="line-opts">
+                                    <a class="position-relative">
+                                        <div class="dialog-description" [class.no-opacity]="usuario.hover">
+                                            <p>Editar</p>
+                                            <div class="arrow"></div>
+                                        </div>
+                                        <a href="javascript:void(0)">
+                                            <img src="../../../assets/img/icon-edit.svg" width="25px"
+                                                (click)="updateUser()" (click)="abrirModal()"
+                                                (mouseenter)="usuario.hover=true" (mouseleave)="usuario.hover=false">
+                                        </a>
+                                    </a>
+                                    <a class="position-relative">
+                                        <div class="dialog-description" [class.no-opacity]="usuario.hover2">
+                                            <p>Excluir</p>
+                                            <div class="arrow"></div>
+                                        </div>
+                                        <a href="javascript:void(0)">
+                                            <img src="../../../assets/img/icon-delete.svg" width="19px"
+                                                (mouseenter)="usuario.hover2=true" (mouseleave)="usuario.hover2=false"
+                                                (click)="updateUser()" (click)="abrirModalDelete()">
+                                        </a>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
         </div>
+    </div>
+
+    <div class="go-top" [class.d-none]="!btnGoTop" (click)="goTop()">
+        <img src="../../../assets/img/icon-arrow-up.svg">
+        <p>Ir para o topo</p>
     </div>
 </div>
