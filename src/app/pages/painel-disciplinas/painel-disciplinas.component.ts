@@ -10,10 +10,10 @@ import { Subscription } from 'rxjs';
 })
 export class PainelDisciplinasComponent implements OnInit, OnDestroy {
 
-  titleModal = "";
-  openModal = false;
-  openModalDelete = false;
-  isNewDisciplina = false;
+  public titleModal: string = '';
+  public openModal: boolean = false;
+  public openModalDelete: boolean = false;
+  public isNewDisciplina: boolean = false;
   public disciplina: Disciplina = {};
   public disciplinas: Disciplina[] = [];
   public alertHidden: boolean = true;
@@ -98,26 +98,28 @@ export class PainelDisciplinasComponent implements OnInit, OnDestroy {
           resposta => this.exibirAlert(resposta.error.message, 'danger')));
   }
 
-  public fecharModal(){
-    this.openModal=false;
+  public fecharModal(): void {
+    this.openModal = false;
     this.openModalDelete = false;
   }
 
-  public abrirModal(){
-    this.openModal=true;
+  public abrirModal(): void {
+    this.openModal = true;
   }
 
-  public novaDisciplina(){
+  public novaDisciplina(): void {
     this.titleModal = "Cadastro de Disciplina"
     this.isNewDisciplina = true;
   }
-  public updateDisciplina(){
+
+  public updateDisciplina(): void {
     this.titleModal = "Atualização de Disciplina"
     this.isNewDisciplina = false;
   }
-  public abrirModalDelete() {
+
+  public abrirModalDelete(): void {
     this.openModalDelete = true;
-    
-    this.titleModal = "Voce realmente deseja excuir essa disciplina ?"
+    this.titleModal = "Voce realmente deseja excuir esta disciplina?"
   }
+
 }

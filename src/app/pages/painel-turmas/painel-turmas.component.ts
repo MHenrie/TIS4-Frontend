@@ -11,10 +11,11 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./painel-turmas.component.scss']
 })
 export class PainelTurmasComponent implements OnInit, OnDestroy {
-  openModal = false;
-  openModalDelete = false;
-  titleModal = ""
-  isNewTurma = false;
+
+  public openModal: boolean = false;
+  public openModalDelete: boolean = false;
+  public titleModal: string = '';
+  public isNewTurma: boolean = false;
   public turma: Turma = {};
   public turmas: Turma[] = [];
   public professores: Usuario[] = [];
@@ -116,26 +117,28 @@ export class PainelTurmasComponent implements OnInit, OnDestroy {
           resposta => this.exibirAlert(resposta.error.message, 'danger')));
   }
 
-  public fecharModal(){
-    this.openModal=false;
+  public fecharModal(): void {
+    this.openModal = false;
     this.openModalDelete = false;
   }
 
-  public abrirModal(){
-    this.openModal=true;
+  public abrirModal(): void {
+    this.openModal = true;
   }
 
-  public novaTurma(){
+  public novaTurma(): void {
     this.titleModal = "Cadastro de Turmas"
     this.isNewTurma = true;
   }
-  public updateTurma(){
+
+  public updateTurma(): void {
     this.titleModal = "Atualização de Turma"
     this.isNewTurma = false;
   }
-  public abrirModalDelete() {
+
+  public abrirModalDelete(): void {
     this.openModalDelete = true;
-    
-    this.titleModal = "Voce realmente deseja excuir essa turma ?"
+    this.titleModal = "Voce realmente deseja excuir esta turma?"
   }
+
 }

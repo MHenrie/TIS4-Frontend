@@ -4,23 +4,25 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
- 
+
 })
 export class HeaderComponent implements OnInit {
 
-  nomeCompleto ="";
+  public nomeCompleto: string = '';
+
   constructor() { }
 
   ngOnInit() {
-    this.nomeCompleto = localStorage.getItem('Nome')
+    this.nomeCompleto = localStorage.getItem('Nome');
   }
 
-  public logout(){
+  public logout(): void {
     localStorage.removeItem('LoginBuenoBrandao');
     localStorage.removeItem('Nome');
     localStorage.removeItem('Username');
     localStorage.removeItem('Tipo');
     localStorage.removeItem('ID');
-    open('/login','_self')
+    open('/login', '_self')
   }
+
 }

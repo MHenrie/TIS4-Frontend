@@ -12,15 +12,13 @@ import { Disciplina } from 'src/app/interfaces/disciplina';
 })
 export class PainelItensDisciplinasComponent implements OnInit {
 
-  openModal = false;
-  openModalDelete = false;
-  titleModal = "";
-  isNewDisciplina = false;
+  public openModal: boolean = false;
+  public openModalDelete: boolean = false;
+  public titleModal: string = '';
+  public isNewDisciplina: boolean = false;
   public itemDisciplina: ItemDisciplina = {};
-
   public itensDisciplinas: ItemDisciplina[] = [];
   public alertHidden: boolean = true;
-
   public disciplinas: Disciplina[] = [];
 
   private subscriptions: Subscription[] = [];
@@ -110,26 +108,28 @@ export class PainelItensDisciplinasComponent implements OnInit {
       .subscribe(lista => this.disciplinas = <Disciplina[]>lista));
   }
 
-  public fecharModal() {
+  public fecharModal(): void {
     this.openModal = false;
     this.openModalDelete = false;
   }
 
-  public abrirModal() {
+  public abrirModal(): void {
     this.openModal = true;
   }
 
-  public novoItemDisciplina() {
+  public novoItemDisciplina(): void {
     this.titleModal = "Cadastro de Item"
     this.isNewDisciplina = true;
   }
-  public updateItemDisciplina() {
+
+  public updateItemDisciplina(): void {
     this.titleModal = "Atualização de Item"
     this.isNewDisciplina = false;
   }
-  public abrirModalDelete() {
-    this.openModalDelete = true;
 
-    this.titleModal = "Voce realmente deseja excuir esse item  ?"
+  public abrirModalDelete(): void {
+    this.openModalDelete = true;
+    this.titleModal = "Voce realmente deseja excluir este item?"
   }
+
 }
