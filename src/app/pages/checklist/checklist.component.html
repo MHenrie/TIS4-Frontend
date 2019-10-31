@@ -2,6 +2,7 @@
 <div id="container">
 
 
+
     <br><br>
 
 
@@ -23,10 +24,12 @@
                     (click)="novoItemDisciplina()">Adicionar novo
                     item de disciplina</button>
 
-                <div class="search-input d-flex justify-content-between position-relative">
-                    <input class="form-control mb-2" type="text" placeholder="Buscar disciplina">
-                    <img class="position-absolute" width="20px" src="../../../assets/img/icon-search.svg">
-                </div>
+                <select>
+                    <option selected>Selecione disciplina</option>
+                    <div *ngFor="let disciplina of disciplinas">
+                        <option>{{disciplina.nome}}</option>
+                    </div>
+                </select>
 
                 <div class="d-flex justify-content-around mb-3">
                     <div>
