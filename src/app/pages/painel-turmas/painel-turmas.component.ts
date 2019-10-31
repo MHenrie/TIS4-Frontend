@@ -82,6 +82,7 @@ export class PainelTurmasComponent implements OnInit, OnDestroy {
   }
 
   public adicionar(): void {
+    console.log(this.turma);
     if (this.camposPreenchidos())
       this.subscriptions.push(this.turmaService.adicionar(this.turma)
         .subscribe(() => {

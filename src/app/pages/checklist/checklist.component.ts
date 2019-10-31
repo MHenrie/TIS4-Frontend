@@ -15,12 +15,13 @@ export class ChecklistComponent implements OnInit, OnDestroy {
   public openModal: boolean = false;
   public openModalDelete: boolean = false;
   public titleModal: string = '';
-  public itemTurma: ItemTurma = {};
-  public itensTurma: ItemTurma[] = [];
+  public item: ItemTurma = {};
+  public itens: ItemTurma[] = [];
   public alertHidden: boolean = true;
   public disciplinas: Disciplina[] = [];
 
-  public turmaId: number = 1;
+  public disciplinaId: number;
+
   private subscriptions: Subscription[] = [];
 
   constructor(private itemService: ItemTurmaService, private disciplinaService: DisciplinaService) { }
@@ -54,35 +55,36 @@ export class ChecklistComponent implements OnInit, OnDestroy {
   //   return true;
   // }
 
-  public listarPorDisciplina(disciplinaId: number): void {
-    this.subscriptions.push(this.itemService.listarPorDisciplinaAndTurma(disciplinaId, this.turmaId)
-      .subscribe(lista => this.itensTurma = <ItemTurma[]>lista));
+  public listarPorDisciplina(): void {
+    this.subscriptions.push(this.itemService.listarPorDisciplina(this.disciplinaId)
+      .subscribe(lista => this.itens = <ItemTurma[]>lista));
   }
 
   public carregarItem(id: number): void {
     this.subscriptions.push(this.itemService.buscarItemCompleto(id)
-      .subscribe(objeto => this.itemTurma = objeto));
+      .subscribe(objeto => this.item = objeto));
   }
 
   public carregarDescricao(id: number): void {
     this.subscriptions.push(this.itemService.buscarItemDescricao(id)
-      .subscribe(descricao => this.itemTurma.descricao = <string>descricao));
+      .subscribe(descricao => this.item.descricao = <string>descricao));
   }
 
   public atualizarStatus(id: number, status: string): void {
+
     this.subscriptions.push(this.itemService.atualizarStatus(id, status)
       .subscribe(() => alert("Status atualizado!"), () => alert("Erro ao atualizar status!")));
   }
 
   public limpar(): void {
-    this.itemTurma = {};
+    this.item = {};
   }
 
   public adicionar(): void {
     // if (this.camposPreenchidos())
-    this.subscriptions.push(this.itemService.adicionar(this.itemTurma)
+    this.subscriptions.push(this.itemService.adicionar(this.item)
       .subscribe(() => {
-        this.itemTurma = {};
+        this.item = {};
         this.exibirAlert('Item cadastrado com sucesso!', 'success');
 
       },
@@ -91,9 +93,9 @@ export class ChecklistComponent implements OnInit, OnDestroy {
 
   public editar(): void {
     // if (this.camposPreenchidos())
-    this.subscriptions.push(this.itemService.editar(this.itemTurma)
+    this.subscriptions.push(this.itemService.editar(this.item)
       .subscribe(() => {
-        this.itemTurma = {};
+        this.item = {};
         this.exibirAlert('Item atualizado com sucesso!', 'success');
 
       },
@@ -102,9 +104,9 @@ export class ChecklistComponent implements OnInit, OnDestroy {
 
   public excluir(): void {
     // if (this.camposPreenchidos())
-    this.subscriptions.push(this.itemService.excluir(this.itemTurma.id)
+    this.subscriptions.push(this.itemService.excluir(this.item.id)
       .subscribe(() => {
-        this.itemTurma = {};
+        this.item = {};
         this.exibirAlert('Item excluído com sucesso!', 'success');
 
       },

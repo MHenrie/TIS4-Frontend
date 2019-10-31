@@ -25,6 +25,14 @@
                 <option value="Trabalhar">Trabalhar</option>
                 <option value="Consolidar">Consolidar</option>
                 <option value="Retomar">Retomar</option>
+            </select>
+            <label>Bimestre</label>
+            <select class="form-control" type="number" [(ngModel)]="itemDisciplina.bimestre">
+                <option value="undefined" disabled selected>Bimestre</option>
+                <option value="1">1º Bimestre</option>
+                <option value="2">2º Bimestre</option>
+                <option value="3">3º Bimestre</option>
+                <option value="4">4º Bimestre</option>
             </select><br>
             <div class="">
                 <div class="btn-block btn-group">
@@ -86,31 +94,19 @@
 
             <div class="mb-3">
                 <button type="button" class="btn btn-info w-100 mb-3" (click)="abrirModal()" (click)="limpar()"
-                    (click)="novoItemDisciplina()">Adicionar novo
-                    item de disciplina</button>
+                    (click)="novoItemDisciplina()">
+                    Adicionar novo item de disciplina
+                </button>
 
-                <div class="search-input d-flex justify-content-between position-relative">
-                    <input class="form-control mb-2" type="text" placeholder="Buscar item de disciplina">
-                    <img class="position-absolute" width="20px" src="../../../assets/img/icon-search.svg">
-                </div>
+                <select class="form-control" type="number" [(ngModel)]="disciplinaId" (change)="listarPorDisciplina()">
+                    <option value="undefined" disabled selected>Selecione a disciplina</option>
+                    <option *ngFor="let disciplina of disciplinas" [ngValue]="disciplina.id">
+                        {{disciplina.nome}}
+                    </option>
+                </select>
 
-                <div class="d-flex justify-content-around mb-3">
-                    <div>
-                        Filtro 1
-                    </div>
-
-                    <div>
-                        Filtro 2
-                    </div>
-
-                    <div>
-                        Filtro 3
-                    </div>
-
-
-                </div>
             </div>
-            <div class="table-overflow">
+            <div class="table-overflow" *ngIf="disciplinaId != undefined">
 
                 <div class="list-table">
                     <table class="table">

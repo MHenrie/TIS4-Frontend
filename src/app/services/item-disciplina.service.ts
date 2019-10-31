@@ -11,10 +11,6 @@ export class ItemDisciplinaService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public listarTodos() {
-    return this.httpClient.get(`${this.apiUrl}/itens-disciplinas`);
-  }
-
   public adicionar(itemDisciplina: ItemDisciplina) {
     return this.httpClient.post(`${this.apiUrl}/item-disciplina?user=${this.user}`, itemDisciplina);
   }

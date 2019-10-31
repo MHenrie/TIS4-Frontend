@@ -21,13 +21,15 @@ export class PainelItensDisciplinasComponent implements OnInit, OnDestroy {
   public alertHidden: boolean = true;
   public disciplinas: Disciplina[] = [];
 
+  public disciplinaId: number;
+
   private subscriptions: Subscription[] = [];
 
   constructor(private itemService: ItemDisciplinaService, private disciplinaService: DisciplinaService) { }
 
   ngOnInit() {
-    this.listarTodos();
     this.listarDisciplinas();
+    this.listarPorDisciplina();
   }
 
   ngOnDestroy() {
@@ -55,8 +57,8 @@ export class PainelItensDisciplinasComponent implements OnInit, OnDestroy {
     return true;
   }
 
-  public listarTodos(): void {
-    this.subscriptions.push(this.itemService.listarTodos()
+  public listarPorDisciplina(): void {
+    this.subscriptions.push(this.itemService.listarPorDisciplina(this.disciplinaId)
       .subscribe(lista => this.itensDisciplinas = <ItemDisciplina[]>lista));
   }
 
@@ -70,15 +72,15 @@ export class PainelItensDisciplinasComponent implements OnInit, OnDestroy {
   }
 
   public adicionar(): void {
+    this.itemDisciplina.global = true;
     if (this.camposPreenchidos())
-      console.log(this.itemDisciplina);
-    this.subscriptions.push(this.itemService.adicionar(this.itemDisciplina)
-      .subscribe(() => {
-        this.itemDisciplina = {};
-        this.exibirAlert('Item cadastrado com sucesso!', 'success');
-        this.listarTodos();
-      },
-        resposta => this.exibirAlert(resposta.error.message, 'danger')));
+      this.subscriptions.push(this.itemService.adicionar(this.itemDisciplina)
+        .subscribe(() => {
+          this.itemDisciplina = {};
+          this.exibirAlert('Item cadastrado com sucesso!', 'success');
+          this.listarPorDisciplina();
+        },
+          resposta => this.exibirAlert(resposta.error.message, 'danger')));
   }
 
   public atualizar(): void {
@@ -87,7 +89,7 @@ export class PainelItensDisciplinasComponent implements OnInit, OnDestroy {
         .subscribe(() => {
           this.itemDisciplina = {};
           this.exibirAlert('Item atualizado com sucesso!', 'success');
-          this.listarTodos();
+          this.listarPorDisciplina();
         },
           resposta => this.exibirAlert(resposta.error.message, 'danger')));
   }
@@ -98,7 +100,7 @@ export class PainelItensDisciplinasComponent implements OnInit, OnDestroy {
         .subscribe(() => {
           this.itemDisciplina = {};
           this.exibirAlert('Item excluído com sucesso!', 'success');
-          this.listarTodos();
+          this.listarPorDisciplina();
         },
           resposta => this.exibirAlert(resposta.error.message, 'danger')));
   }

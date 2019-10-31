@@ -8,12 +8,14 @@ export class ItemTurmaService {
 
   private apiUrl = 'http://localhost:8080/api';
 
-  private user = 12052019;
+  private user = 1;
+
+  private turmaId = 1;
 
   constructor(private httpClient: HttpClient, private iDisciplinaService: ItemDisciplinaService) { }
 
-  public listarPorDisciplinaAndTurma(disciplinaId: number, turmaId: number) {
-    return this.httpClient.get(`${this.apiUrl}disciplina/${disciplinaId}/turma/${turmaId}/itens-turma`);
+  public listarPorDisciplina(disciplinaId: number) {
+    return this.httpClient.get(`${this.apiUrl}/disciplina/${disciplinaId}/turma/${this.turmaId}/itens-turma`);
   }
 
   public adicionar(itemTurma: ItemTurma) {
