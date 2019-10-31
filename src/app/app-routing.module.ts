@@ -10,6 +10,7 @@ import { ChecklistComponent } from './pages/checklist/checklist.component';
 
 const routes: Routes = [
   { path: 'admin', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
   { path: 'admin/login', component: LoginComponent },
   { path: 'admin/turmas', component: PainelTurmasComponent },
   { path: 'admin/usuarios', component: PainelUsuariosComponent },
