@@ -26,7 +26,7 @@ export class ChecklistComponent implements OnInit, OnDestroy {
   constructor(private itemService: ItemTurmaService, private disciplinaService: DisciplinaService) { }
 
   ngOnInit() {
-
+    this.listarDisciplinas();
   }
 
   ngOnDestroy() {
