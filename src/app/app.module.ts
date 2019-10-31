@@ -12,6 +12,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { PainelDisciplinasComponent } from './pages/painel-disciplinas/painel-disciplinas.component';
 import { PainelItensDisciplinasComponent } from './pages/painel-itens-disciplinas/painel-itens-disciplinas.component';
 import { HeaderComponent } from './partials/header/header.component';
+import { ChecklistComponent } from './pages/checklist/checklist.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { HeaderComponent } from './partials/header/header.component';
     LoginComponent,
     PainelDisciplinasComponent,
     PainelItensDisciplinasComponent,
-    HeaderComponent
+    HeaderComponent,
+    ChecklistComponent
   ],
   imports: [
     BrowserModule,

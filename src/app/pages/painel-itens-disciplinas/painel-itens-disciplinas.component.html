@@ -14,8 +14,8 @@
                     <span>{{disciplina.nome}} ({{disciplina.serie}})</span>
                 </option>
             </select>
-            <label>Nome</label>
-            <input class="form-control" placeholder="Nome" type="text" [(ngModel)]="itemDisciplina.nome">
+            <label>Título</label>
+            <input class="form-control" placeholder="Título" type="text" [(ngModel)]="itemDisciplina.titulo">
             <label>Descrição</label>
             <input class="form-control" placeholder="Descrição" type="text" [(ngModel)]="itemDisciplina.descricao">
             <label>Objetivo</label>
@@ -47,12 +47,12 @@
             </div>
             <h3>{{titleModal}}</h3>
 
-            <p>Nome: {{itemDisciplina.nome}}</p>
+            <p>Título: {{itemDisciplina.titulo}}</p>
             <p>Descrição: {{itemDisciplina.descricao}}</p>
             <p>Objetivo: {{itemDisciplina.objetivo}}</p>
             <div id="alert" class="alert" role="alert" [hidden]="alertHidden"></div>
 
-            <input class="form-control" type="hidden" [(ngModel)]="itemDisciplina.nome">
+            <input class="form-control" type="hidden" [(ngModel)]="itemDisciplina.titulo">
 
             <input class="form-control" type="hidden" [(ngModel)]="itemDisciplina.descricao">
 
@@ -96,7 +96,7 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let itemDisciplina of itensDisciplinas">
-                                <td>{{itemDisciplina.nome}}</td>
+                                <td>{{itemDisciplina.titulo}}</td>
                                 <td>{{itemDisciplina.descricao}}</td>
                                 <td>{{itemDisciplina.objetivo}}</td>
                                 <td class="line-options" (click)="carregar(itemDisciplina.id)">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ItemDisciplinaService } from 'src/app/services/item-disciplina.service';
 import { ItemDisciplina } from 'src/app/interfaces/item-disciplina';
 import { Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import { Disciplina } from 'src/app/interfaces/disciplina';
   templateUrl: './painel-itens-disciplinas.component.html',
   styleUrls: ['./painel-itens-disciplinas.component.scss']
 })
-export class PainelItensDisciplinasComponent implements OnInit {
+export class PainelItensDisciplinasComponent implements OnInit, OnDestroy {
 
   public openModal: boolean = false;
   public openModalDelete: boolean = false;
