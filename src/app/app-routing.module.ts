@@ -5,16 +5,18 @@ import { PainelUsuariosComponent } from './pages/painel-usuarios/painel-usuarios
 import { LoginComponent } from './pages/login/login.component';
 import { PainelDisciplinasComponent } from './pages/painel-disciplinas/painel-disciplinas.component';
 import { PainelItensDisciplinasComponent } from './pages/painel-itens-disciplinas/painel-itens-disciplinas.component';
+import { ChecklistComponent } from './pages/checklist/checklist.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'turmas', component: PainelTurmasComponent },
-  { path: 'usuarios', component: PainelUsuariosComponent },
-  { path: 'disciplinas', component: PainelDisciplinasComponent },
-  { path: 'disciplinas/:disciplina', redirectTo:'itens-disciplinas#aaa', pathMatch:'full' },
-  { path: 'itens-disciplinas', component: PainelItensDisciplinasComponent }
+  { path: 'admin', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'admin/login', component: LoginComponent },
+  { path: 'admin/turmas', component: PainelTurmasComponent },
+  { path: 'admin/usuarios', component: PainelUsuariosComponent },
+  { path: 'admin/disciplinas', component: PainelDisciplinasComponent },
+  { path: 'admin/disciplinas/:disciplina', component: PainelItensDisciplinasComponent },
+  { path: 'admin/itens-disciplinas', component: PainelItensDisciplinasComponent },
+  { path: 'checklist', component: ChecklistComponent }
 ];
 
 @NgModule({

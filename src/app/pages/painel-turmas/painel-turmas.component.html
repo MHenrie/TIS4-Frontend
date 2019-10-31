@@ -82,7 +82,7 @@
     <br><br>
     <div class="banner">
 
-        <p>Listagem de Turmas</p>
+        <p>Gerenciamento de Turmas</p>
         <img class="d-none d-lg-block" src="../../../assets/img/Header-Tables.jpg">
 
         <img class="d-block d-lg-none" src="../../../assets/img/Header-Tables-mobile.jpg">
@@ -118,49 +118,51 @@
                 </div>
             </div>
             <div class="table-overflow">
-                <table class="table">
-                    <thead class="">
-                        <tr>
-                            <th scope="col">Nome da turma</th>
-                            <th scope="col">Série</th>
-                            <th scope="col">Ano</th>
-                            <th scope="col" class="text-center">Operações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let turma of turmas">
-                            <td>{{turma.nome}}</td>
-                            <td>{{turma.serie}}</td>
-                            <td>{{turma.ano}}</td>
-                            <td (click)="carregar(turma.id)">
-                                <div class="line-opts">
-                                    <a class="position-relative">
-                                        <div class="dialog-description" [class.no-opacity]="turma.hover">
-                                            <p>Editar</p>
-                                            <div class="arrow"></div>
-                                        </div>
-                                        <a href="javascript:void(0)" (click)="updateTurma()">
-                                            <img src="../../../assets/img/icon-edit.svg" width="25px"
-                                                (click)="updateTurma()" (click)="abrirModal()"
-                                                (mouseenter)="turma.hover=true" (mouseleave)="turma.hover=false">
+                <div class="list-table">
+                    <table class="table">
+                        <thead class="">
+                            <tr>
+                                <th scope="col">Nome da turma</th>
+                                <th scope="col">Série</th>
+                                <th scope="col">Ano</th>
+                                <th scope="col" class="text-center">Operações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let turma of turmas">
+                                <td>{{turma.nome}}</td>
+                                <td>{{turma.serie}}</td>
+                                <td>{{turma.ano}}</td>
+                                <td (click)="carregar(turma.id)">
+                                    <div class="line-opts">
+                                        <a class="position-relative">
+                                            <div class="dialog-description" [class.no-opacity]="turma.hover">
+                                                <p>Editar</p>
+                                                <div class="arrow"></div>
+                                            </div>
+                                            <a href="javascript:void(0)" (click)="updateTurma()">
+                                                <img src="../../../assets/img/icon-edit.svg" width="25px"
+                                                    (click)="updateTurma()" (click)="abrirModal()"
+                                                    (mouseenter)="turma.hover=true" (mouseleave)="turma.hover=false">
+                                            </a>
                                         </a>
-                                    </a>
-                                    <a class="position-relative">
-                                        <div class="dialog-description" [class.no-opacity]="turma.hover2">
-                                            <p>Excluir</p>
-                                            <div class="arrow"></div>
-                                        </div>
-                                        <a href="javascript:void(0)">
-                                            <img src="../../../assets/img/icon-delete.svg" width="19px"
-                                                (mouseenter)="turma.hover2=true" (mouseleave)="turma.hover2=false"
-                                                (click)="abrirModalDelete()">
+                                        <a class="position-relative">
+                                            <div class="dialog-description" [class.no-opacity]="turma.hover2">
+                                                <p>Excluir</p>
+                                                <div class="arrow"></div>
+                                            </div>
+                                            <a href="javascript:void(0)">
+                                                <img src="../../../assets/img/icon-delete.svg" width="19px"
+                                                    (mouseenter)="turma.hover2=true" (mouseleave)="turma.hover2=false"
+                                                    (click)="abrirModalDelete()">
+                                            </a>
                                         </a>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

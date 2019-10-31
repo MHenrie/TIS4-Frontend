@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           localStorage.setItem('Tipo', `${(<Usuario>objeto).tipo}`);
           localStorage.setItem('ID', `${(<Usuario>objeto).id}`);
           if(`${(<Usuario>objeto).tipo}` == "Administrador"){
-            open("/usuarios","_self")
+            open("admin/usuarios","_self")
           }
         },
           resposta => this.exibirAlert(resposta.error.message, 'danger'));

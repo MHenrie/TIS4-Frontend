@@ -69,24 +69,52 @@
     </div>
 
     <br><br>
+
+
+    <div class="banner">
+
+        <p>Gerenciamento de Itens</p>
+        <img class="d-none d-lg-block" src="../../../assets/img/Header-Tables.jpg">
+
+        <img class="d-block d-lg-none" src="../../../assets/img/Header-Tables-mobile.jpg">
+
+
+    </div>
+
     <div class="p-4 d-flex justify-content-center">
         <div class="content-table">
-            <div class="mb-2">
-                <h1>Listagem de itens das disciplinas</h1>
-            </div>
+
             <div class="mb-3">
-                <button type="button" class="btn btn-info w-100" (click)="abrirModal()" (click)="limpar()"
+                <button type="button" class="btn btn-info w-100 mb-3" (click)="abrirModal()" (click)="limpar()"
                     (click)="novoItemDisciplina()">Adicionar novo
                     item de disciplina</button>
-            </div>
-            <div class="table-overflow">
+
                 <div class="search-input d-flex justify-content-between position-relative">
                     <input class="form-control mb-2" type="text" placeholder="Buscar item de disciplina">
                     <img class="position-absolute" width="20px" src="../../../assets/img/icon-search.svg">
                 </div>
+
+                <div class="d-flex justify-content-around mb-3">
+                    <div>
+                        Filtro 1
+                    </div>
+
+                    <div>
+                        Filtro 2
+                    </div>
+
+                    <div>
+                        Filtro 3
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="table-overflow">
+
                 <div class="list-table">
-                    <table class="table table-striped">
-                        <thead class="thead-dark">
+                    <table class="table">
+                        <thead class="">
                             <tr>
                                 <th scope="col">Título</th>
                                 <th scope="col">Descrição</th>
